@@ -907,15 +907,12 @@ MoonBallMultiplier:
 	pop bc
 	ret nz
 
-; BUG: Moon Ball does not boost catch rate (see docs/bugs_and_glitches.md)
-	inc hl
-	inc hl
 	inc hl
 
 	push bc
 	ld a, BANK("Evolutions and Attacks")
 	call GetFarByte
-	cp MOON_STONE_RED ; BURN_HEAL
+	cp MOON_STONE
 	pop bc
 	ret nz
 
