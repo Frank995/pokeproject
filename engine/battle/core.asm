@@ -147,7 +147,6 @@ WildFled_EnemyFled_LinkBattleCanceled:
 	call CheckMobileBattleError
 	jr c, .skip_sfx
 
-; BUG: SFX_RUN does not play correctly when a wild Pokémon flees from battle (see docs/bugs_and_glitches.md)
 	ld de, SFX_RUN
 	call WaitPlaySFX
 
@@ -4221,7 +4220,6 @@ PursuitSwitch:
 	or [hl]
 	jr nz, .done
 
-; BUG: A Pokémon that fainted from Pursuit will have its old status condition when revived (see docs/bugs_and_glitches.md)
 	ld a, $f0
 	ld [wCryTracks], a
 	ld a, [wBattleMonSpecies]
