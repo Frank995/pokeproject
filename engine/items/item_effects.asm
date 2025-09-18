@@ -1957,30 +1957,38 @@ GetOneFifthMaxHP:
 	ret
 
 GetHealingItemAmount:
-	push hl
 	ld a, [wCurItem]
-	ld hl, HealingHPAmounts
-	ld d, a
-.next
-	ld a, [hli]
-	cp -1
-	jr z, .NotFound
-	cp d
-	jr z, .done
-	inc hl
-	inc hl
-	jr .next
 
-.NotFound:
+	; Check full healing item
+	cp MAX_POTION
+	jr z, .FullHP
+	cp FULL_RESTORE
+	jr z, .FullHP
+	
+	push bc
+	ld b, a
+	farcall GetItemHeldEffect
+	ld e, c
+	ld d, 0
+	ld a, c
+	and a
+	jr nz, .no_carry
 	scf
-.done
+.no_carry
+	pop bc
+	ret
+
+.FullHP:
+	push hl
+	ld hl, .MaxStatValue
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
 	pop hl
 	ret
 
-INCLUDE "data/items/heal_hp.asm"
+.MaxStatValue:
+	dw MAX_STAT_VALUE
 
 Softboiled_MilkDrinkFunction:
 ; Softboiled/Milk Drink in the field
