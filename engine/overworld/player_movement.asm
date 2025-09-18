@@ -24,6 +24,11 @@ DoPlayerMovement::
 	and PAD_CTRL_PAD
 	ret nz
 
+	; Brake with B when downhill
+    ld a, c
+    and PAD_B
+    ret nz
+
 	ld a, c
 	or PAD_DOWN
 	ld [wCurInput], a
