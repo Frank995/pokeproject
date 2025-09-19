@@ -3,6 +3,9 @@ NULL::
 
 INCLUDE "home/header.asm"
 
+SECTION "Sine", ROM0[$0063]  ; start just after joypad JP
+INCLUDE "home/sine.asm"
+
 SECTION "Home", ROM0
 
 INCLUDE "home/init.asm"
@@ -20,7 +23,6 @@ INCLUDE "home/gfx.asm"
 INCLUDE "home/text.asm"
 INCLUDE "home/video.asm"
 INCLUDE "home/map_objects.asm"
-INCLUDE "home/sine.asm"
 INCLUDE "home/movement.asm"
 INCLUDE "home/menu.asm"
 INCLUDE "home/printer.asm"
