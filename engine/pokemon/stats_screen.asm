@@ -1,8 +1,9 @@
-	const_def 1
-	const PINK_PAGE  ; 1
-	const GREEN_PAGE ; 2
-	const BLUE_PAGE  ; 3
-DEF NUM_STAT_PAGES EQU const_value - 1
+	const_def
+	const PINK_PAGE   ; 0
+	const GREEN_PAGE  ; 1
+	const BLUE_PAGE   ; 2
+	const ORANGE_PAGE ; 3
+DEF NUM_STAT_PAGES EQU const_value
 
 DEF STAT_PAGE_MASK EQU %00000011
 	const_def 4
@@ -66,12 +67,7 @@ StatsScreenInit_gotaddress:
 StatsScreenMain:
 	xor a
 	ld [wJumptableIndex], a
-	ld [wStatsScreenFlags], a
-
-	ld a, [wStatsScreenFlags]
-	and ~STAT_PAGE_MASK
-	or PINK_PAGE ; first_page
-	ld [wStatsScreenFlags], a
+	ld [wStatsScreenFlags], a ; PINK_PAGE
 
 .loop
 	ld a, [wJumptableIndex]
@@ -87,12 +83,7 @@ StatsScreenMain:
 StatsScreenMobile:
 	xor a
 	ld [wJumptableIndex], a
-	ld [wStatsScreenFlags], a
-
-	ld a, [wStatsScreenFlags]
-	and ~STAT_PAGE_MASK
-	or PINK_PAGE ; first_page
-	ld [wStatsScreenFlags], a
+	ld [wStatsScreenFlags], a ; PINK_PAGE
 
 .loop
 	farcall Mobile_SetOverworldDelay
@@ -379,20 +370,22 @@ StatsScreen_JoypadAction:
 
 .a_button
 	ld a, c
-	cp BLUE_PAGE ; last page
+	cp ORANGE_PAGE ; last page
 	jr z, .b_button
 .d_right
 	inc c
-	ld a, BLUE_PAGE ; last page
+	ld a, ORANGE_PAGE ; last page
 	cp c
 	jr nc, .set_page
 	ld c, PINK_PAGE ; first page
 	jr .set_page
 
 .d_left
+	ld a, c
 	dec c
+	and a ; cp PINK_PAGE ; first page
 	jr nz, .set_page
-	ld c, BLUE_PAGE ; last page
+	ld c, ORANGE_PAGE ; last page
 	jr .set_page
 
 .done
@@ -513,7 +506,7 @@ StatsScreen_PlaceHorizontalDivider:
 	ret
 
 StatsScreen_PlacePageSwitchArrows:
-	hlcoord 12, 6
+	hlcoord 10, 6
 	ld [hl], "◀"
 	hlcoord 19, 6
 	ld [hl], "▶"
@@ -569,7 +562,6 @@ StatsScreen_LoadGFX:
 .PageTilemap:
 	ld a, [wStatsScreenFlags]
 	maskbits NUM_STAT_PAGES
-	dec a
 	ld hl, .Jumptable
 	rst JumpTable
 	ret
@@ -580,6 +572,7 @@ StatsScreen_LoadGFX:
 	dw LoadPinkPage
 	dw LoadGreenPage
 	dw LoadBluePage
+	dw LoadOrangePage
 	assert_table_length NUM_STAT_PAGES
 
 LoadPinkPage:
@@ -771,6 +764,8 @@ LoadGreenPage:
 
 LoadBluePage:
 	call .PlaceOTInfo
+	call .PlaceHappinessInfo
+	call .PlaceMetInfo
 	hlcoord 10, 8
 	ld de, SCREEN_WIDTH
 	ld b, 10
@@ -780,9 +775,6 @@ LoadBluePage:
 	add hl, de
 	dec b
 	jr nz, .vertical_divider
-	hlcoord 11, 8
-	ld bc, 6
-	predef PrintTempMonStats
 	ret
 
 .PlaceOTInfo:
@@ -817,17 +809,387 @@ LoadBluePage:
 .done
 	ret
 
+.PlaceHappinessInfo:
+	ld de, .HappinessString
+	hlcoord 0, 15
+	call PlaceString
+	hlcoord 2, 16
+	lb bc, 1, 3
+	ld de, wTempMonHappiness
+	call PrintNum
+	ld de, .MaxHappinessString
+	hlcoord 5, 16
+	call PlaceString
+	ret
+
+.HappinessString:
+	db "Q:@"
+.MaxHappinessString:
+	db "/255@"
+
+.PlaceMetInfo:
+	; Met level
+	ld de, .MetLevelString
+	hlcoord 11, 9
+	call PlaceString
+	ld a, [wTempMonCaughtLevel]
+	and CAUGHT_LEVEL_MASK	
+	and a
+	jr z, .unknown_level
+.print_level
+	ld [wTextDecimalByte], a
+	hlcoord 17, 9
+	ld de, wTextDecimalByte
+	lb bc, PRINTNUM_LEFTALIGN | 1, 3
+	call PrintNum
+	jr .met_time
+.unknown_level
+	ld de, .UnknownString
+	hlcoord 15, 9
+	call PlaceString
+.met_time
+	; Met time
+	ld de, .MetTimeString
+	hlcoord 11, 11
+	call PlaceString
+	ld a, [wTempMonCaughtTime]
+	and CAUGHT_TIME_MASK
+	jr z, .unknown_time
+	rlca
+	rlca
+	dec a
+	ld hl, .TimeStrings
+	call GetNthString
+	ld d, h
+	ld e, l
+	call CopyName1
+	ld de, wStringBuffer2
+	hlcoord 12, 12
+	call PlaceString
+	jr .met_location
+.unknown_time
+	ld de, .TradeString
+	hlcoord 11, 12
+	call PlaceString
+.met_location
+	; Met location
+	ld de, .MetLocationString
+	hlcoord 11, 14
+	call PlaceString
+	ld a, [wTempMonCaughtLocation]
+	and CAUGHT_LOCATION_MASK
+	jr z, .unknown_location
+	cp LANDMARK_EVENT
+	jr z, .unknown_location
+	cp LANDMARK_GIFT
+	jr z, .unknown_location
+	ld e, a
+	farcall GetLandmarkName   ; fills wStringBuffer1 with name
+	ld de, wStringBuffer1
+	hlcoord 11, 15
+	call _PrintLandmarkWrapped
+	ret	
+.unknown_location
+	ld de, .UnknownLocationString
+	hlcoord 11, 15
+	call PlaceString
+	ret
+
 .OTNamePointers:
 	dw wPartyMonOTs
 	dw wOTPartyMonOTs
 	dw sBoxMonOTs
 	dw wBufferMonOT
 
+.MetLevelString:
+	db "LEVEL@"
+.MetTimeString:
+	db "TIME@"
+.MetLocationString:
+	db "LOCATION@"
+.TimeStrings:
+	db "MORNING@"
+	db "DAY@"
+	db "NIGHT@"
+.TradeString:
+	db "TRADE@"
+.UnknownString:
+	db "??@"
+.UnknownLocationString:
+	db "UNKNOWN@"
+
 IDNoString:
 	db "<ID>№.@"
 
 OTString:
 	db "OT/@"
+
+LoadOrangePage:
+	call .PlaceStatsTable
+	ret
+
+.PlaceStatsTable:
+	; Table headers
+	ld de, .CurrentString
+	hlcoord 6, 8
+	call PlaceString
+	ld de, .DVString
+	hlcoord 11, 8
+	call PlaceString
+	ld de, .EXPString
+	hlcoord 17, 8
+	call PlaceString
+
+	; HP row
+	ld de, .HPString
+	hlcoord 0, 10
+	call PlaceString
+	hlcoord 6, 10
+	lb bc, 2, 3
+	ld de, wTempMonHP
+	call PrintNum
+	call .GetHPDV
+	hlcoord 11, 10
+	lb bc, 1, 2
+	ld de, wPokedexStatus
+	call PrintNum
+	hlcoord 15, 10
+	lb bc, 2, 5
+	ld de, wTempMonHPExp
+	call PrintNum
+
+	; ATK row
+	ld de, .ATKString
+	hlcoord 0, 12
+	call PlaceString
+	hlcoord 6, 12
+	lb bc, 2, 3
+	ld de, wTempMonAttack
+	call PrintNum
+	call .GetATKDV
+	hlcoord 11, 12
+	lb bc, 1, 2
+	ld de, wPokedexStatus
+	call PrintNum
+	hlcoord 15, 12
+	lb bc, 2, 5
+	ld de, wTempMonAtkExp
+	call PrintNum
+
+	; DEF row
+	ld de, .DEFString
+	hlcoord 0, 13
+	call PlaceString
+	hlcoord 6, 13
+	lb bc, 2, 3
+	ld de, wTempMonDefense
+	call PrintNum
+	call .GetDEFDV
+	hlcoord 11, 13
+	lb bc, 1, 2
+	ld de, wPokedexStatus
+	call PrintNum
+	hlcoord 15, 13
+	lb bc, 2, 5
+	ld de, wTempMonDefExp
+	call PrintNum
+
+	; SPA row
+	ld de, .SPAString
+	hlcoord 0, 14
+	call PlaceString
+	hlcoord 6, 14
+	lb bc, 2, 3
+	ld de, wTempMonSpclAtk
+	call PrintNum
+	call .GetSPCDV
+	hlcoord 11, 14
+	lb bc, 1, 2
+	ld de, wPokedexStatus
+	call PrintNum
+	hlcoord 15, 14
+	lb bc, 2, 5
+	ld de, wTempMonSpcExp
+	call PrintNum
+
+	; SPD row
+	ld de, .SPDString
+	hlcoord 0, 15
+	call PlaceString
+	hlcoord 6, 15
+	lb bc, 2, 3
+	ld de, wTempMonSpclDef
+	call PrintNum
+	call .GetSPCDV
+	hlcoord 11, 15
+	lb bc, 1, 2
+	ld de, wPokedexStatus
+	call PrintNum
+	hlcoord 15, 15
+	lb bc, 2, 5
+	ld de, wTempMonSpcExp
+	call PrintNum
+
+	; SPE row
+	ld de, .SPEString
+	hlcoord 0, 16
+	call PlaceString
+	hlcoord 6, 16
+	lb bc, 2, 3
+	ld de, wTempMonSpeed
+	call PrintNum
+	call .GetSPEDV
+	hlcoord 11, 16
+	lb bc, 1, 2
+	ld de, wPokedexStatus
+	call PrintNum
+	hlcoord 15, 16
+	lb bc, 2, 5
+	ld de, wTempMonSpdExp
+	call PrintNum
+
+	ret
+
+.GetHPDV:
+	; Calculate HP DV from other DVs
+	ld c, 0
+	; ATK DV contribution (bit 0 of ATK DV)
+	ld a, [wTempMonDVs]
+	and %11110000
+	swap a
+	and 1
+	jr z, .hp_no_atk
+	ld c, 8
+.hp_no_atk
+	; DEF DV contribution (bit 0 of DEF DV)
+	ld a, [wTempMonDVs]
+	and %00001111
+	and 1
+	jr z, .hp_no_def
+	ld a, c
+	add 4
+	ld c, a
+.hp_no_def
+	; SPE DV contribution (bit 0 of SPE DV)
+	ld a, [wTempMonDVs + 1]
+	and %11110000
+	swap a
+	and 1
+	jr z, .hp_no_spe
+	ld a, c
+	add 2
+	ld c, a
+.hp_no_spe
+	; SPC DV contribution (bit 0 of SPC DV)
+	ld a, [wTempMonDVs + 1]
+	and %00001111
+	and 1
+	jr z, .hp_done
+	ld a, c
+	add 1
+	ld c, a
+.hp_done
+	ld a, c
+	ld [wPokedexStatus], a
+	ret
+
+.GetATKDV:
+	ld a, [wTempMonDVs]
+	and %11110000
+	swap a
+	ld [wPokedexStatus], a
+	ret
+
+.GetDEFDV:
+	ld a, [wTempMonDVs]
+	and %00001111
+	ld [wPokedexStatus], a
+	ret
+
+.GetSPEDV:
+	ld a, [wTempMonDVs + 1]
+	and %11110000
+	swap a
+	ld [wPokedexStatus], a
+	ret
+
+.GetSPCDV:
+	ld a, [wTempMonDVs + 1]
+	and %00001111
+	ld [wPokedexStatus], a
+	ret
+
+.CurrentString:
+	db "CUR@"
+.DVString:
+	db "DV@"
+.EXPString:
+	db "EXP@"
+.HPString:
+	db "HP@"
+.ATKString:
+	db "ATK@"
+.DEFString:
+	db "DEF@"
+.SPAString:
+	db "SP.A@"
+.SPDString:
+	db "SP.D@"
+.SPEString:
+	db "SPE@"
+
+; Keep the Hidden Power functions for potential future use
+StatsScreen_LoadUnownFont:
+	ld a, BANK(sScratch)
+	call OpenSRAM
+	ld hl, UnownFont
+	ld de, sScratch + $188
+	ld bc, 38 tiles
+	ld a, BANK(UnownFont)
+	call FarCopyBytes
+	ld de, sScratch + $188
+	ld hl, vTiles1 tile $3a
+	lb bc, BANK(Pokedex_LoadUnownFont), NUM_UNOWN
+	call Request2bpp
+	call CloseSRAM
+	ret
+
+StatsScreen_HiddenPow_BP:
+	call StatsScreen_LoadUnownFont
+	ld a, [wTempMonDVs]
+	swap a
+	and %1000
+	ld b, a
+	ld a, [wTempMonDVs]
+	and %1000
+	srl a
+	or b
+	ld b, a
+	ld a, [wTempMonDVs + 1]
+	swap a
+	and %1000
+	srl a
+	srl a
+	or b
+	ld b, a
+	ld a, [wTempMonDVs + 1]
+	and %1000
+	srl a
+	srl a
+	srl a
+	or b
+	ld b, a
+	add a
+	add a
+	add b
+	ld b, a
+	ld a, [wTempMonDVs + 1]
+	and %0011
+	add b
+	srl a
+	add 30
+	inc a
+	ret
 
 StatsScreen_PlaceFrontpic:
 	ld hl, wTempMonDVs
@@ -1112,23 +1474,32 @@ StatsScreen_AnimateEgg:
 	ret
 
 StatsScreen_LoadPageIndicators:
-	hlcoord 13, 5
+	hlcoord 11, 5
 	ld a, $36 ; first of 4 small square tiles
 	call .load_square
+	hlcoord 13, 5
+	ld a, $36
+	call .load_square
 	hlcoord 15, 5
-	ld a, $36 ; " " " "
+	ld a, $36
 	call .load_square
 	hlcoord 17, 5
-	ld a, $36 ; " " " "
+	ld a, $36
 	call .load_square
 	ld a, c
+	cp PINK_PAGE
+	hlcoord 11, 5
+	jr z, .load_highlighted_square
 	cp GREEN_PAGE
+	hlcoord 13, 5
+	jr z, .load_highlighted_square
+	cp BLUE_PAGE
+	hlcoord 15, 5
+	jr z, .load_highlighted_square
+	; must be ORANGE_PAGE
+	hlcoord 17, 5
+.load_highlighted_square
 	ld a, $3a ; first of 4 large square tiles
-	hlcoord 13, 5 ; PINK_PAGE (< GREEN_PAGE)
-	jr c, .load_square
-	hlcoord 15, 5 ; GREEN_PAGE (= GREEN_PAGE)
-	jr z, .load_square
-	hlcoord 17, 5 ; BLUE_PAGE (> GREEN_PAGE)
 .load_square
 	push bc
 	ld [hli], a
@@ -1196,4 +1567,48 @@ CheckFaintedFrzSlp:
 
 .fainted_frz_slp
 	scf
+	ret
+
+; ========= Helpers =========
+
+; Copy up to B chars from DE -> HL, terminate with "@"
+_CopySubstring:
+.copy_loop
+	ld a, [de]
+	cp "@"
+	jr z, .terminate
+	ld [hl], a
+	inc de
+	inc hl
+	dec b
+	jr nz, .copy_loop
+.terminate
+	ld a, "@"
+	ld [hl], a
+	ret
+
+
+; Print landmark name across up to 2 lines (11,15) and (11,16)
+; Expects wStringBuffer1 already filled by GetLandmarkName
+_PrintLandmarkWrapped:
+	ld de, wStringBuffer1
+	ld hl, wStringBuffer2     ; temp buffer 1
+	ld b, 9                   ; first line max
+	call _CopySubstring
+	ld de, wStringBuffer2
+	hlcoord 11, 15
+	call PlaceString
+
+	; now print the remainder if any
+	ld de, wStringBuffer1+9   ; continue from char 10
+	ld hl, wStringBuffer3     ; temp buffer 2
+	ld b, 9
+	call _CopySubstring
+
+	ld a, [wStringBuffer3]    ; empty?
+	cp "@"
+	ret z
+	ld de, wStringBuffer3
+	hlcoord 11, 16
+	call PlaceString
 	ret
