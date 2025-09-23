@@ -355,7 +355,6 @@ Pokedex_UpdateDexEntryScreen:
 	ld a, [hl]
 	and PAD_B
 	jr nz, .return_to_prev_screen
-	vc_hook Forbid_printing_Pokedex
 	ld a, [hl]
 	and PAD_A
 	jr nz, .do_menu_action
