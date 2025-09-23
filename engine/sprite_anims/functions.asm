@@ -27,8 +27,6 @@ DoSpriteAnimFrame:
 	dw SpriteAnimFunc_SlotsChansey
 	dw SpriteAnimFunc_SlotsChanseyEgg
 	dw SpriteAnimFunc_MailCursor
-	dw SpriteAnimFunc_UnusedCursor
-	dw SpriteAnimFunc_MemoryGameCursor
 	dw SpriteAnimFunc_PokegearArrow
 	dw SpriteAnimFunc_TradePokeBall
 	dw SpriteAnimFunc_TradeTubeBulge
@@ -401,16 +399,8 @@ SpriteAnimFunc_SlotsChanseyEgg:
 	ld [hl], a
 	ret
 
-SpriteAnimFunc_UnusedCursor:
-	callfar UnusedCursor_InterpretJoypad_AnimateCursor
-	ret
-
 SpriteAnimFunc_PokegearArrow:
 	callfar AnimatePokegearModeIndicatorArrow
-	ret
-
-SpriteAnimFunc_MemoryGameCursor:
-	callfar MemoryGame_InterpretJoypad_AnimateCursor
 	ret
 
 SpriteAnimFunc_TradePokeBall:

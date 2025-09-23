@@ -43,8 +43,6 @@ CGBLayoutJumptable:
 	dw _CGB_MapPals
 	dw _CGB_PartyMenu
 	dw _CGB_Evolution
-	dw _CGB_GSTitleScreen
-	dw _CGB_Unused0D
 	dw _CGB_MoveList
 	dw _CGB_BetaPikachuMinigame
 	dw _CGB_PokedexSearchOption
@@ -60,8 +58,6 @@ CGBLayoutJumptable:
 	dw _CGB_PlayerOrMonFrontpicPals
 	dw _CGB_TradeTube
 	dw _CGB_TrainerOrMonFrontpicPals
-	dw _CGB_MysteryGift
-	dw _CGB_Unused1E
 	assert_table_length NUM_SCGB_LAYOUTS
 
 _CGB_BattleGrayscale:
@@ -552,31 +548,6 @@ _CGB_Evolution:
 	ldh [hCGBPalUpdate], a
 	ret
 
-_CGB_GSTitleScreen:
-	ld hl, UnusedGSTitleBGPals
-	ld de, wBGPals1
-	ld bc, 5 palettes
-	ld a, BANK(wBGPals1)
-	call FarCopyWRAM
-	ld hl, UnusedGSTitleOBPals
-	ld de, wOBPals1
-	ld bc, 2 palettes
-	ld a, BANK(wOBPals1)
-	call FarCopyWRAM
-	ld a, SCGB_DIPLOMA
-	ld [wDefaultSGBLayout], a
-	call ApplyPals
-	ld a, TRUE
-	ldh [hCGBPalUpdate], a
-	ret
-
-_CGB_Unused0D:
-	ld hl, PalPacket_Diploma + 1
-	call CopyFourPalettes
-	call WipeAttrmap
-	call ApplyAttrmap
-	ret
-
 _CGB_UnownPuzzle:
 	ld hl, PalPacket_UnownPuzzle + 1
 	call CopyFourPalettes
@@ -886,15 +857,6 @@ _CGB_PlayerOrMonFrontpicPals:
 	call ApplyPals
 	ret
 
-_CGB_Unused1E:
-	ld de, wBGPals1
-	ld a, [wCurPartySpecies]
-	call GetMonPalettePointer
-	call LoadPalette_White_Col1_Col2_Black
-	call WipeAttrmap
-	call ApplyAttrmap
-	ret
-
 _CGB_TradeTube:
 	ld hl, PalPacket_TradeTube + 1
 	call CopyFourPalettes
@@ -920,37 +882,3 @@ _CGB_TrainerOrMonFrontpicPals:
 	call ApplyAttrmap
 	call ApplyPals
 	ret
-
-_CGB_MysteryGift:
-	ld hl, .MysteryGiftPalettes
-	ld de, wBGPals1
-	ld bc, 2 palettes
-	ld a, BANK(wBGPals1)
-	call FarCopyWRAM
-	call ApplyPals
-	call WipeAttrmap
-	hlcoord 3, 7, wAttrmap
-	lb bc, 8, 14
-	ld a, $1
-	call FillBoxCGB
-	hlcoord 1, 5, wAttrmap
-	lb bc, 1, 18
-	ld a, $1
-	call FillBoxCGB
-	hlcoord 1, 16, wAttrmap
-	lb bc, 1, 18
-	ld a, $1
-	call FillBoxCGB
-	hlcoord 0, 0, wAttrmap
-	lb bc, 17, 2
-	ld a, $1
-	call FillBoxCGB
-	hlcoord 18, 5, wAttrmap
-	lb bc, 12, 1
-	ld a, $1
-	call FillBoxCGB
-	call ApplyAttrmap
-	ret
-
-.MysteryGiftPalettes:
-INCLUDE "gfx/mystery_gift/mystery_gift.pal"

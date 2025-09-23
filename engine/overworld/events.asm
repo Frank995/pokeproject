@@ -240,8 +240,6 @@ PlayerEvents:
 	and a
 	ret nz
 
-	call Dummy_CheckEnabledMapEventsBit5 ; This is a waste of time
-
 	call CheckTrainerEvent
 	jr c, .ok
 
@@ -393,12 +391,6 @@ SetMinTwoStepWildEncounterCooldown:
 	ret nc
 	ld a, 2
 	ld [wWildEncounterCooldown], a
-	ret
-
-Dummy_CheckEnabledMapEventsBit5:
-	call CheckEnabledMapEventsBit5
-	ret z
-	call SetXYCompareFlags
 	ret
 
 RunSceneScript:

@@ -5451,11 +5451,11 @@ Function11ad1b:
 	ld [wCurIconTile], a
 	ld hl, LoadMenuMonIcon
 	ld a, BANK(LoadMenuMonIcon)
-	ld e, MONICON_MOBILE1
+	ld e, 5 ; MONICON_MOBILE1
 	rst FarCall
 	ld hl, LoadMenuMonIcon
 	ld a, BANK(LoadMenuMonIcon)
-	ld e, MONICON_MOBILE2
+	ld e, 6 ; MONICON_MOBILE2
 	rst FarCall
 	ld hl, wPokedexOrder
 	ld bc, $0115

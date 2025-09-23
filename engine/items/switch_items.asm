@@ -239,7 +239,6 @@ ItemSwitch_GetItemFormatSize:
 
 .item_format_sizes:
 ; entries correspond to SCROLLINGMENU_ITEMS_* constants
-	dw 0 ; unused
 	dw 1 ; SCROLLINGMENU_ITEMS_NORMAL
 	dw 2 ; SCROLLINGMENU_ITEMS_QUANTITY
 

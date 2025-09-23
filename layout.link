@@ -30,15 +30,15 @@ ROM0
 	org $0150
 	"Home"
 ROMX $01
-	"bank1"
+	"Engine 1"
 ROMX $02
-	"bank2"
+	"Engine 2"
 ROMX $03
-	"bank3"
+	"Engine 3"
 ROMX $04
-	"bank4"
+	"Engine 4"
 ROMX $05
-	"bank5"
+	"Engine 5"
 ROMX $06
 	"Tileset Data 1"
 ROMX $07

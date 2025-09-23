@@ -67,7 +67,6 @@ DEF SLOTS_END_LOOP_F EQU 7
 	const REEL_ACTION_SET_UP_REEL2_SKIP_TO_7
 	const REEL_ACTION_WAIT_REEL2_SKIP_TO_7
 	const REEL_ACTION_FAST_SPIN_REEL2_UNTIL_LINED_UP_7S
-	const REEL_ACTION_UNUSED
 	const REEL_ACTION_CHECK_DROP_REEL
 	const REEL_ACTION_WAIT_DROP_REEL
 	const REEL_ACTION_START_SLOW_ADVANCE_REEL3
@@ -840,7 +839,6 @@ ReelActionJumptable:
 	dw ReelAction_SetUpReel2SkipTo7           ; 0a
 	dw ReelAction_WaitReel2SkipTo7            ; 0b
 	dw ReelAction_FastSpinReel2UntilLinedUp7s ; 0c
-	dw ReelAction_Unused                      ; 0d
 	dw ReelAction_CheckDropReel               ; 0e
 	dw ReelAction_WaitDropReel                ; 0f
 	dw ReelAction_StartSlowAdvanceReel3       ; 10
@@ -1211,19 +1209,6 @@ ReelAction_DropReel:
 	ld [wSlotsDelay], a
 	ret
 
-ReelAction_Unused:
-	call Slots_CheckMatchedAllThreeReels
-	ret c
-	ld a, SFX_STOP_SLOT
-	call Slots_PlaySFX
-	call Slots_WaitSFX
-	ld hl, REEL_ACTION
-	add hl, bc
-	inc [hl] ; REEL_ACTION_CHECK_DROP_REEL
-	call Slots_GetNumberOfGolems
-	ld hl, REEL_MANIP_DELAY
-	add hl, bc
-	ld [hl], a
 ReelAction_CheckDropReel:
 	ld hl, REEL_MANIP_DELAY
 	add hl, bc

@@ -1,4 +1,4 @@
-SECTION "bank1", ROMX
+SECTION "Engine 1", ROMX
 
 INCLUDE "engine/link/place_waiting_text.asm"
 INCLUDE "engine/gfx/load_push_oam.asm"
@@ -14,14 +14,14 @@ INCLUDE "engine/events/shuckle.asm"
 INCLUDE "engine/events/haircut.asm"
 
 
-SECTION "bank2", ROMX
+SECTION "Engine 2", ROMX
 
 INCLUDE "engine/overworld/player_object.asm"
 INCLUDE "engine/predef.asm"
 INCLUDE "engine/gfx/color.asm"
 
 
-SECTION "bank3", ROMX
+SECTION "Engine 3", ROMX
 
 INCLUDE "engine/events/checktime.asm"
 INCLUDE "engine/events/specials.asm"
@@ -40,7 +40,7 @@ INCLUDE "engine/battle_anims/pokeball_wobble.asm"
 INCLUDE "engine/pokemon/knows_move.asm"
 
 
-SECTION "bank4", ROMX
+SECTION "Engine 4", ROMX
 
 INCLUDE "engine/items/pack.asm"
 INCLUDE "engine/overworld/time.asm"
@@ -65,7 +65,7 @@ INCLUDE "engine/events/bug_contest/contest_2.asm"
 INCLUDE "engine/math/get_square_root.asm"
 
 
-SECTION "bank5", ROMX
+SECTION "Engine 5", ROMX
 
 INCLUDE "engine/rtc/rtc.asm"
 INCLUDE "engine/overworld/overworld.asm"
@@ -449,7 +449,6 @@ SECTION "bank38", ROMX
 INCLUDE "engine/events/print_unown_2.asm"
 INCLUDE "engine/games/card_flip.asm"
 INCLUDE "engine/games/unown_puzzle.asm"
-INCLUDE "engine/games/memory_game.asm"
 INCLUDE "engine/pokemon/bills_pc.asm"
 
 
