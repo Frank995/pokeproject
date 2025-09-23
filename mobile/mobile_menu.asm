@@ -1,8 +1,5 @@
 MainMenu_Mobile:
 	call ClearBGPalettes
-	ld a, MUSIC_MOBILE_ADAPTER_MENU
-	ld [wMapMusic], a
-	ld de, MUSIC_MOBILE_ADAPTER_MENU
 	call Function4a6c5
 Function49f0a:
 	call ClearBGPalettes
@@ -780,14 +777,6 @@ Function4a6ab:
 	jp Function4a4c4
 
 Function4a6c5:
-	ld a, $5
-	ld [wMusicFade], a
-	ld a, e
-	ld [wMusicFadeID], a
-	ld a, d
-	ld [wMusicFadeID + 1], a
-	ld c, 22
-	call DelayFrames
 	ret
 
 Function4a6d8:

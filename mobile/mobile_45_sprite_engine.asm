@@ -463,13 +463,6 @@ Function1161d5:
 	ldh [rWBK], a
 
 	farcall HDMATransferTilemapAndAttrmap_Overworld
-	ld a, $8
-	ld [wMusicFade], a
-	ld de, MUSIC_MOBILE_ADAPTER
-	ld a, e
-	ld [wMusicFadeID], a
-	ld a, d
-	ld [wMusicFadeID + 1], a
 	ld a, [wc319]
 	inc a
 	ld [wc319], a

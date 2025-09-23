@@ -531,13 +531,6 @@ Function17d2ce:
 	call Function17d45a
 	pop af
 	ldh [rWBK], a
-	ld de, MUSIC_MOBILE_CENTER
-	ld a, e
-	ld [wMapMusic], a
-	ld [wMusicFadeID], a
-	ld a, d
-	ld [wMusicFadeID + 1], a
-	call PlayMusic
 	call ReturnToMapFromSubmenu
 	call CloseSubmenu
 	ret

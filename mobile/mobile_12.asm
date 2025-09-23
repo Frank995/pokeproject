@@ -37,14 +37,6 @@ InitMobileProfile:
 	call Function48689
 	jr .asm_480d7
 .asm_4808a
-	ld a, $5
-	ld [wMusicFade], a
-	ld a, LOW(MUSIC_MOBILE_ADAPTER_MENU)
-	ld [wMusicFadeID], a
-	ld a, HIGH(MUSIC_MOBILE_ADAPTER_MENU)
-	ld [wMusicFadeID + 1], a
-	ld c, 20
-	call DelayFrames
 	ld b, CRYSTAL_CGB_MOBILE_1
 	call GetCrystalCGBLayout
 	call ClearBGPalettes
