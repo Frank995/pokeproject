@@ -196,14 +196,6 @@ _TMHMNotCompatibleText::
 	text "."
 	prompt
 
-_NoRoomTMHMText::
-	text "You have no room"
-	line "for any more"
-	cont "@"
-	text_ram wStringBuffer1
-	text "S."
-	prompt
-
 _ReceivedTMHMText::
 	text "You received"
 	line "@"
@@ -317,8 +309,6 @@ _BlindingFlashText::
 	text_promptbutton
 	text_end
 
-	text_end ; unreferenced
-
 _UsedSurfText::
 	text_ram wStringBuffer2
 	text " used"
@@ -383,11 +373,6 @@ _CantUseTeleportText::
 
 	para ""
 	done
-
-_AlreadyUsingStrengthText::
-	text "A #MON is using"
-	line "STRENGTH already."
-	prompt
 
 _UseStrengthText::
 	text_ram wStringBuffer2
@@ -487,11 +472,6 @@ _RodNothingText::
 	text "Not even a nibble!"
 	prompt
 
-_UnusedNothingHereText::
-	text "Looks like there's"
-	line "nothing here."
-	prompt
-
 _CantGetOffBikeText::
 	text "You can't get off"
 	line "here!"
@@ -561,14 +541,6 @@ _PoisonFaintText::
 	line "fainted!"
 	prompt
 
-_PoisonWhiteoutText::
-	text "<PLAYER> is out of"
-	line "useable #MON!"
-
-	para "<PLAYER> whited"
-	line "out!"
-	prompt
-
 _UseSweetScentText::
 	text_ram wStringBuffer3
 	text " used"
@@ -597,10 +569,6 @@ _AnEggCantHoldAnItemText::
 	text "An EGG can't hold"
 	line "an item."
 	prompt
-
-_PackNoItemText::
-	text "No items."
-	done
 
 _AskThrowAwayText::
 	text "Throw away how"
@@ -655,11 +623,6 @@ _PackEmptyText::
 	text_start
 	done
 
-_YouCantUseItInABattleText::
-	text "You can't use it"
-	line "in a battle."
-	prompt
-
 _AreYouABoyOrAreYouAGirlText::
 	text "Are you a boy?"
 	line "Or are you a girl?"
@@ -670,8 +633,6 @@ Text_BattleEffectActivate::
 	line "@"
 	text_ram wStringBuffer2
 	text_end
-
-	text_end ; unreferenced
 
 _BattleStatWentWayUpText::
 	text_pause
@@ -687,8 +648,6 @@ Text_BattleFoeEffectActivate::
 	line "@"
 	text_ram wStringBuffer2
 	text_end
-
-	text_end ; unreferenced
 
 _BattleStatSharplyFellText::
 	text_pause
@@ -756,8 +715,6 @@ _MoveNameText::
 	text_ram wStringBuffer2
 	text_end
 
-	text_end ; unreferenced
-
 _EndUsedMove1Text::
 	text "!"
 	done
@@ -795,8 +752,6 @@ _BreedEggHatchText::
 	sound_caught_mon
 	text_promptbutton
 	text_end
-
-	text_end ; unreferenced
 
 _BreedAskNicknameText::
 	text "Give a nickname to"
@@ -888,29 +843,6 @@ _MailMovedFromBoxText::
 	line "from the MAILBOX."
 	prompt
 
-_YesPromptText:: ; unreferenced
-	text "Yes"
-	prompt
-
-_NoPromptText:: ; unreferenced
-	text "No"
-	prompt
-
-_AnimationTypeText:: ; unreferenced
-	text_decimal wcf64, 1, 3
-	text " @"
-	text_ram wStringBuffer1
-	text_start
-	line "Animation type @"
-	text_ram wStringBuffer2
-	text_end
-
-	text_end ; unreferenced
-
-_MonNumberText:: ; unreferenced
-	text "#MON number?"
-	done
-
 _WasSentToBillsPCText::
 	text_ram wStringBuffer1
 	text " was"
@@ -932,21 +864,6 @@ _PCMonHoldingMailText::
 
 	para "Please remove the"
 	line "MAIL."
-	prompt
-
-_PCNoSingleMonText::
-	text "You don't have a"
-	line "single #MON!"
-	prompt
-
-_PCCantDepositLastMonText::
-	text "You can't deposit"
-	line "your last #MON!"
-	prompt
-
-_PCCantTakeText::
-	text "You can't take any"
-	line "more #MON."
 	prompt
 
 _ContestCaughtMonText::
@@ -1052,8 +969,6 @@ _KarpGuruRecordText::
 	text_ram wMagikarpRecordHoldersName
 	text_promptbutton
 	text_end
-
-	text_end ; unreferenced
 
 _LuckyNumberMatchPartyText::
 	text "Congratulations!"
@@ -1347,27 +1262,6 @@ _OakPCText4::
 	line "OAK's PC closed."
 	done
 
-_TrainerRankingExplanationText:: ; unreferenced
-	text "Triple-theme"
-	line "trainer ranking!"
-
-	para "The SAVE file you"
-	line "just sent might"
-	cont "make the rankings!"
-
-	para ""
-	done
-
-_TrainerRankingNoDataText:: ; unreferenced
-	text "There is no"
-	line "ranking data."
-
-	para "Link to obtain"
-	line "ranking data."
-
-	para ""
-	done
-
 _MemoryGameYeahText::
 	text " , yeah!"
 	done
@@ -1546,8 +1440,6 @@ _OakText2::
 _OakText3::
 	text_promptbutton
 	text_end
-
-	text_end ; unreferenced
 
 _OakText4::
 	text "People and #MON"

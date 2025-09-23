@@ -963,16 +963,6 @@ StrengthFunction:
 	jr c, .Failed
 	jr .UseStrength
 
-.AlreadyUsingStrength: ; unreferenced
-	ld hl, .AlreadyUsingStrengthText
-	call MenuTextboxBackup
-	ld a, JUMPTABLE_EXIT
-	ret
-
-.AlreadyUsingStrengthText:
-	text_far _AlreadyUsingStrengthText
-	text_end
-
 .Failed:
 	ld a, JUMPTABLE_EXIT
 	ret
@@ -1611,10 +1601,6 @@ RodNothingText:
 	text_far _RodNothingText
 	text_end
 
-UnusedNothingHereText: ; unreferenced
-	text_far _UnusedNothingHereText
-	text_end
-
 BikeFunction:
 	call .TryBike
 	and JUMPTABLE_INDEX_MASK
@@ -1716,10 +1702,6 @@ Script_GetOnBike_Register:
 	closetext
 	special UpdatePlayerSprite
 	end
-
-Overworld_DummyFunction: ; unreferenced
-	nop
-	ret
 
 Script_GetOffBike:
 	refreshmap

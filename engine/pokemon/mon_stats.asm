@@ -323,18 +323,6 @@ ListMovePP:
 	jr nz, .load_loop
 	ret
 
-; "AP" is german for "PP"
-; The german translation uses this instead of the loop above
-.load_ap_loop ; unreferenced
-	ld [hl], $32 ; A
-	inc hl
-	ld [hl], $3e ; P
-	dec hl
-	add hl, de
-	dec c
-	jr nz, .load_ap_loop
-	ret
-
 Unused_PlaceEnemyHPLevel:
 	push hl
 	push hl

@@ -365,14 +365,6 @@ CheckIndoorMap::
 	cp GATE
 	ret
 
-CheckUnknownMap:: ; unreferenced
-	cp INDOOR
-	ret z
-	cp GATE
-	ret z
-	cp ENVIRONMENT_5
-	ret
-
 LoadMapAttributes::
 	call CopyMapPartialAndAttributes
 	call SwitchToMapScriptsBank
@@ -1103,20 +1095,6 @@ ObjectEventText::
 	text_far _ObjectEventText
 	text_end
 
-BGEvent:: ; unreferenced
-	jumptext BGEventText
-
-BGEventText::
-	text_far _BGEventText
-	text_end
-
-CoordinatesEvent:: ; unreferenced
-	jumptext CoordinatesEventText
-
-CoordinatesEventText::
-	text_far _CoordinatesEventText
-	text_end
-
 CheckObjectMask::
 	ldh a, [hMapObjectIndex]
 	ld e, a
@@ -1326,13 +1304,6 @@ UpdateBGMapColumn::
 	jr nz, .loop
 	ld a, SCREEN_HEIGHT
 	ldh [hBGMapTileCount], a
-	ret
-
-ClearBGMapBuffer:: ; unreferenced
-	ld hl, wBGMapBuffer
-	ld bc, wBGMapBufferEnd - wBGMapBuffer
-	xor a
-	call ByteFill
 	ret
 
 LoadTilesetGFX::
@@ -2063,11 +2034,6 @@ SwitchToAnyMapAttributesBank::
 	rst Bankswitch
 	ret
 
-GetMapAttributesBank:: ; unreferenced
-	ld a, [wMapGroup]
-	ld b, a
-	ld a, [wMapNumber]
-	ld c, a
 GetAnyMapAttributesBank::
 	push hl
 	push de
@@ -2155,9 +2121,6 @@ GetMapEnvironment::
 	pop bc
 	pop de
 	pop hl
-	ret
-
-Map_DummyFunction:: ; unreferenced
 	ret
 
 GetAnyMapEnvironment::

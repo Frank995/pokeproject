@@ -48,7 +48,7 @@ Divide::
 	pop hl
 	ret
 
-SubtractAbsolute:: ; unreferenced
+SubtractAbsolute::
 ; Return |a - b|, sign in carry.
 	sub b
 	ret nc

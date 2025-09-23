@@ -272,42 +272,6 @@ MobileMenuJoypad:
 	ld c, a
 	ret
 
-Function241d5: ; unreferenced
-	call Place2DMenuCursor
-.loop
-	call Move2DMenuCursor
-	call HDMATransferTilemapToWRAMBank3 ; should be farcall
-	call .loop2
-	jr nc, .done
-	call _2DMenuInterpretJoypad
-	jr c, .done
-	ld a, [w2DMenuFlags1]
-	bit _2DMENU_DISABLE_JOYPAD_FILTER_F, a
-	jr nz, .done
-	call GetMenuJoypad
-	ld c, a
-	ld a, [wMenuJoypadFilter]
-	and c
-	jr z, .loop
-
-.done
-	ret
-
-.loop2
-	call Menu_WasButtonPressed
-	ret c
-	ld c, 1
-	ld b, 3
-	call AdvanceMobileInactivityTimerAndCheckExpired ; should be farcall
-	ret c
-	farcall Function100337
-	ret c
-	ld a, [w2DMenuFlags1]
-	bit _2DMENU_DISABLE_JOYPAD_FILTER_F, a
-	jr z, .loop2
-	and a
-	ret
-
 MenuJoypadLoop:
 .loop
 	call Move2DMenuCursor
@@ -691,38 +655,6 @@ _ExitMenu::
 	ldh [rWBK], a
 	ld hl, wWindowStackSize
 	dec [hl]
-	ret
-
-RestoreOverworldMapTiles: ; unreferenced
-	ld a, [wStateFlags]
-	bit SPRITE_UPDATES_DISABLED_F, a
-	ret z
-	xor a ; sScratch
-	call OpenSRAM
-	hlcoord 0, 0
-	ld de, sScratch
-	ld bc, SCREEN_AREA
-	call CopyBytes
-	call CloseSRAM
-	call LoadOverworldTilemapAndAttrmapPals
-	xor a ; sScratch
-	call OpenSRAM
-	ld hl, sScratch
-	decoord 0, 0
-	ld bc, SCREEN_AREA
-.loop
-	ld a, [hl]
-	cp $61
-	jr c, .next
-	ld [de], a
-.next
-	inc hl
-	inc de
-	dec bc
-	ld a, c
-	or b
-	jr nz, .loop
-	call CloseSRAM
 	ret
 
 Error_Cant_ExitMenu:

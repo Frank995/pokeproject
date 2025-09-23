@@ -35,40 +35,40 @@ CheckEnabledMapEventsBit5:
 	bit PLAYEREVENTS_UNUSED, [hl]
 	ret
 
-DisableWarpsConnections: ; unreferenced
-	ld hl, wEnabledPlayerEvents
-	res PLAYEREVENTS_WARPS_AND_CONNECTIONS, [hl]
-	ret
+; DisableWarpsConnections: ; unreferenced
+; 	ld hl, wEnabledPlayerEvents
+; 	res PLAYEREVENTS_WARPS_AND_CONNECTIONS, [hl]
+; 	ret
 
-DisableCoordEvents: ; unreferenced
-	ld hl, wEnabledPlayerEvents
-	res PLAYEREVENTS_COORD_EVENTS, [hl]
-	ret
+; DisableCoordEvents: ; unreferenced
+; 	ld hl, wEnabledPlayerEvents
+; 	res PLAYEREVENTS_COORD_EVENTS, [hl]
+; 	ret
 
-DisableStepCount: ; unreferenced
-	ld hl, wEnabledPlayerEvents
-	res PLAYEREVENTS_COUNT_STEPS, [hl]
-	ret
+; DisableStepCount: ; unreferenced
+; 	ld hl, wEnabledPlayerEvents
+; 	res PLAYEREVENTS_COUNT_STEPS, [hl]
+; 	ret
 
-DisableWildEncounters: ; unreferenced
-	ld hl, wEnabledPlayerEvents
-	res PLAYEREVENTS_WILD_ENCOUNTERS, [hl]
-	ret
+; DisableWildEncounters: ; unreferenced
+; 	ld hl, wEnabledPlayerEvents
+; 	res PLAYEREVENTS_WILD_ENCOUNTERS, [hl]
+; 	ret
 
-EnableWarpsConnections: ; unreferenced
-	ld hl, wEnabledPlayerEvents
-	set PLAYEREVENTS_WARPS_AND_CONNECTIONS, [hl]
-	ret
+; EnableWarpsConnections: ; unreferenced
+; 	ld hl, wEnabledPlayerEvents
+; 	set PLAYEREVENTS_WARPS_AND_CONNECTIONS, [hl]
+; 	ret
 
-EnableCoordEvents: ; unreferenced
-	ld hl, wEnabledPlayerEvents
-	set PLAYEREVENTS_COORD_EVENTS, [hl]
-	ret
+; EnableCoordEvents: ; unreferenced
+; 	ld hl, wEnabledPlayerEvents
+; 	set PLAYEREVENTS_COORD_EVENTS, [hl]
+; 	ret
 
-EnableStepCount: ; unreferenced
-	ld hl, wEnabledPlayerEvents
-	set PLAYEREVENTS_COUNT_STEPS, [hl]
-	ret
+; EnableStepCount: ; unreferenced
+; 	ld hl, wEnabledPlayerEvents
+; 	set PLAYEREVENTS_COUNT_STEPS, [hl]
+; 	ret
 
 EnableWildEncounters:
 	ld hl, wEnabledPlayerEvents
@@ -130,11 +130,6 @@ EnterMap:
 	ldh [hMapEntryMethod], a
 	ld a, MAPSTATUS_HANDLE
 	ld [wMapStatus], a
-	ret
-
-UnusedWait30Frames: ; unreferenced
-	ld c, 30
-	call DelayFrames
 	ret
 
 HandleMap:
@@ -482,11 +477,6 @@ CheckTimeEvents:
 	ld a, BANK(BugCatchingContestOverScript)
 	ld hl, BugCatchingContestOverScript
 	call CallScript
-	scf
-	ret
-
-.hatch ; unreferenced
-	ld a, PLAYEREVENT_HATCH
 	scf
 	ret
 
@@ -936,11 +926,6 @@ CountStep:
 	scf
 	ret
 
-.whiteout ; unreferenced
-	ld a, PLAYEREVENT_WHITEOUT
-	scf
-	ret
-
 DoRepelStep:
 	ld a, [wRepelEffect]
 	and a
@@ -1006,9 +991,6 @@ PlayerEventScriptPointers:
 	assert_table_length NUM_PLAYER_EVENTS + 1
 
 InvalidEventScript:
-	end
-
-UnusedPlayerEventScript: ; unreferenced
 	end
 
 HatchEggScript:

@@ -128,13 +128,13 @@ TrainerCard_Page1_Joypad:
 	ld [wJumptableIndex], a
 	ret
 
-.KantoBadgeCheck: ; unreferenced
-	ld a, [wKantoBadges]
-	and a
-	ret z
-	ld a, TRAINERCARDSTATE_PAGE3_LOADGFX
-	ld [wJumptableIndex], a
-	ret
+; .KantoBadgeCheck: ; unreferenced
+; 	ld a, [wKantoBadges]
+; 	and a
+; 	ret z
+; 	ld a, TRAINERCARDSTATE_PAGE3_LOADGFX
+; 	ld [wJumptableIndex], a
+; 	ret
 
 TrainerCard_Page2_LoadGFX:
 	call ClearSprites
@@ -171,13 +171,13 @@ TrainerCard_Page2_Joypad:
 	ld [wJumptableIndex], a
 	ret
 
-.KantoBadgeCheck: ; unreferenced
-	ld a, [wKantoBadges]
-	and a
-	ret z
-	ld a, TRAINERCARDSTATE_PAGE3_LOADGFX
-	ld [wJumptableIndex], a
-	ret
+; .KantoBadgeCheck: ; unreferenced
+; 	ld a, [wKantoBadges]
+; 	and a
+; 	ret z
+; 	ld a, TRAINERCARDSTATE_PAGE3_LOADGFX
+; 	ld [wJumptableIndex], a
+; 	ret
 
 .Quit:
 	ld a, TRAINERCARDSTATE_QUIT
@@ -295,9 +295,6 @@ TrainerCard_Page1_PrintDexCaught_GameTime:
 .Dex_PlayTime:
 	db   "#DEX"
 	next "PLAY TIME@"
-
-.Unused: ; unreferenced
-	db "@"
 
 .Badges:
 	db "  BADGES▶@"
