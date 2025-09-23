@@ -6588,7 +6588,6 @@ TradeCornerHoldMon_RunJumptable:
 	dw Function11b570
 	dw TradeCornerHoldMon_RemoveFromParty
 	dw TradeCornerHoldMon_Success
-	dw TradeCornerHoldMon_Noop ; unused
 
 TradeCornerHoldMon_PrepareForUpload:
 	call .InitRAM
@@ -6834,9 +6833,6 @@ TradeCornerHoldMon_Success:
 	xor a
 	ld [wScriptVar], a
 	jp MobileIncJumptableIndex
-
-TradeCornerHoldMon_Noop:
-	ret
 
 Function11b5e8:
 	ld a, $0

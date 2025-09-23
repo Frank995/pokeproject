@@ -74,9 +74,6 @@ BattleTowerBattle:
 	call _BattleTowerBattle
 	ret
 
-UnusedBattleTowerDummySpecial1:
-	ret
-
 InitBattleTowerChallengeRAM:
 	xor a
 	ld [wBattleTowerBattleEnded], a
@@ -1341,9 +1338,6 @@ LoadOpponentTrainerAndPokemonWithOTSprite:
 	ret
 
 INCLUDE "data/trainers/sprites.asm"
-
-UnusedBattleTowerDummySpecial2:
-	ret
 
 CheckForBattleTowerRules:
 	farcall _CheckForBattleTowerRules

@@ -39,12 +39,6 @@ GameCornerPrizeMonCheckDex:
 	call ExitAllMenus
 	ret
 
-UnusedSetSeenMon:
-	ld a, [wScriptVar]
-	dec a
-	call SetSeenMon
-	ret
-
 FindPartyMonAboveLevel:
 	ld a, [wScriptVar]
 	ld b, a
@@ -206,14 +200,6 @@ CardFlip:
 	call StartGameCornerGame
 	ret
 
-UnusedMemoryGame:
-	call CheckCoinsAndCoinCase
-	ret c
-	ld a, BANK(_MemoryGame)
-	ld hl, _MemoryGame
-	call StartGameCornerGame
-	ret
-
 StartGameCornerGame:
 	call FarQueueScript
 	call FadeToMenu
@@ -261,11 +247,6 @@ CheckCoinsAndCoinCase:
 	text_far _NoCoinCaseText
 	text_end
 
-ClearBGPalettesBufferScreen:
-	call ClearBGPalettes
-	call BufferScreen
-	ret
-
 ScriptReturnCarry:
 	jr c, .carry
 	xor a
@@ -273,12 +254,6 @@ ScriptReturnCarry:
 	ret
 .carry
 	ld a, 1
-	ld [wScriptVar], a
-	ret
-
-UnusedCheckUnusedTwoDayTimer:
-	farcall CheckUnusedTwoDayTimer
-	ld a, [wUnusedTwoDayTimer]
 	ld [wScriptVar], a
 	ret
 
