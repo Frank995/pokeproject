@@ -306,10 +306,8 @@ GetNickname::
 	push de
 	ld bc, MON_NAME_LENGTH
 	call CopyBytes
+
 	pop de
-
-	callfar CorrectNickErrors
-
 	pop bc
 	pop hl
 	ret
