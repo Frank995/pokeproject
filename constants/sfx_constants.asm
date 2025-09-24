@@ -95,14 +95,9 @@
 	const SFX_SING                        ; 5c
 	const SFX_HYPER_BEAM                  ; 5d
 	const SFX_SHINE                       ; 5e
-	const SFX_UNKNOWN_5F                  ; 5f
-	const SFX_UNKNOWN_60                  ; 60
-	const SFX_UNKNOWN_61                  ; 61
 	const SFX_SWITCH_POCKETS              ; 62
-	const SFX_UNKNOWN_63                  ; 63
 	const SFX_BURN                        ; 64
 	const SFX_TITLE_SCREEN_ENTRANCE       ; 65
-	const SFX_UNKNOWN_66                  ; 66
 	const SFX_GET_COIN_FROM_SLOTS         ; 67
 	const SFX_PAY_DAY                     ; 68
 	const SFX_METRONOME                   ; 69

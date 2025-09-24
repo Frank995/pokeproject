@@ -197,21 +197,9 @@ Sfx_Call:
 	channel_count 1
 	channel 5, Sfx_Call_Ch5
 
-Sfx_Unknown60:
-	channel_count 1
-	channel 8, Sfx_Unknown60_Ch8
-
-Sfx_Unknown61:
-	channel_count 1
-	channel 8, Sfx_Unknown61_Ch8
-
 Sfx_SwitchPockets:
 	channel_count 1
 	channel 8, Sfx_SwitchPockets_Ch8
-
-Sfx_Unknown63:
-	channel_count 1
-	channel 8, Sfx_Unknown63_Ch8
 
 Sfx_Burn:
 	channel_count 1
@@ -220,10 +208,6 @@ Sfx_Burn:
 Sfx_TitleScreenEntrance:
 	channel_count 1
 	channel 8, Sfx_TitleScreenEntrance_Ch8
-
-Sfx_Unknown66:
-	channel_count 1
-	channel 5, Sfx_Unknown66_Ch5
 
 Sfx_GetCoinFromSlots:
 	channel_count 1
@@ -462,13 +446,9 @@ Sfx_Shine:
 	channel_count 1
 	channel 5, Sfx_Shine_Ch5
 
-Sfx_Unknown5F:
-	channel_count 3
-	channel 5, Sfx_Unknown5F_Ch5
-	channel 6, Sfx_Unknown5F_Ch6
 Sfx_Sandstorm:
+	channel_count 1
 	channel 8, Sfx_Sandstorm_Ch8
-	assert Sfx_Sandstorm_Ch8 == Sfx_Unknown5F_Ch8
 
 Sfx_HangUp:
 	channel_count 1
@@ -4682,17 +4662,6 @@ Sfx_HyperBeam_Ch8:
 	sound_loop 26, Sfx_HyperBeam_Ch8
 	sound_ret
 
-Sfx_Unknown60_Ch8:
-	noise_note 6, 2, 0, 16
-	noise_note 6, 2, -7, 64
-	noise_note 6, 4, -7, 65
-	noise_note 6, 8, -7, 65
-	noise_note 6, 12, -7, 66
-	noise_note 8, 13, 7, 66
-	noise_note 15, 14, 7, 67
-	noise_note 15, 15, 2, 67
-	sound_ret
-
 Sfx_IntroWhoosh_Ch8:
 	noise_note 1, 1, 0, 16
 	noise_note 2, 2, 0, 16
@@ -4705,18 +4674,8 @@ Sfx_IntroWhoosh_Ch8:
 	noise_note 15, 9, 4, 34
 	sound_ret
 
-Sfx_Unknown61_Ch8:
-	noise_note 4, 13, 1, 65
-	sound_ret
-
 Sfx_SwitchPockets_Ch8:
 	noise_note 4, 12, 1, 66
-	sound_ret
-
-Sfx_Unknown63_Ch8:
-	noise_note 2, 6, -7, 33
-	noise_note 2, 10, -7, 49
-	noise_note 15, 15, 2, 65
 	sound_ret
 
 Sfx_Burn_Ch8:
@@ -4731,13 +4690,6 @@ Sfx_TitleScreenEntrance_Ch8:
 	noise_note 2, 10, 0, 37
 	noise_note 2, 11, 0, 38
 	noise_note 15, 12, 2, 38
-	sound_ret
-
-Sfx_Unknown66_Ch5:
-	duty_cycle 2
-	square_note 1, 15, 2, 1696
-	square_note 1, 15, 2, 1760
-	square_note 8, 15, 1, 1792
 	sound_ret
 
 Sfx_GetCoinFromSlots_Ch5:
@@ -4773,20 +4725,6 @@ Sfx_Metronome_Ch5:
 	square_note 8, 3, 0, 2016
 	square_note 15, 1, 2, 2016
 	pitch_sweep 0, 8
-	sound_ret
-
-Sfx_Unknown5F_Ch5:
-.loop:
-	square_note 2, 15, 7, 1537
-	square_note 2, 15, 7, 1793
-	sound_loop 8, .loop
-	sound_ret
-
-Sfx_Unknown5F_Ch6:
-	square_note 1, 15, 7, 65535
-	square_note 2, 15, 7, 1538
-	square_note 2, 15, 7, 1794
-	sound_loop 8, Sfx_Unknown5F_Ch5.loop
 	sound_ret
 
 Sfx_Fanfare2_Ch5:
@@ -4957,7 +4895,6 @@ Sfx_NoSignal_Ch5:
 	sound_loop 3, Sfx_NoSignal_Ch5
 	sound_ret
 
-Sfx_Unknown5F_Ch8:
 Sfx_Sandstorm_Ch8:
 	noise_note 1, 15, 8, 65
 	noise_note 2, 9, -4, 36
