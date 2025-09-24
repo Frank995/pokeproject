@@ -384,6 +384,9 @@ BattleAnimCmd_EA:
 BattleAnimCmd_EB:
 BattleAnimCmd_EC:
 BattleAnimCmd_ED:
+BattleAnimCmd_F5:
+BattleAnimCmd_F6:
+BattleAnimCmd_F7:
 	ret
 
 BattleAnimCmd_Ret:
@@ -1171,15 +1174,6 @@ BattleAnimCmd_OAMOff:
 BattleAnimCmd_KeepSprites:
 	ld hl, wBattleAnimFlags
 	set BATTLEANIM_KEEPSPRITES_F, [hl]
-	ret
-
-BattleAnimCmd_F5:
-	ret
-
-BattleAnimCmd_F6:
-	ret
-
-BattleAnimCmd_F7:
 	ret
 
 BattleAnimCmd_Sound:
