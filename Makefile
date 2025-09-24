@@ -194,7 +194,7 @@ gfx/pokemon/unown/normal.gbcpal: $(subst .png,.gbcpal,$(unown_pngs))
 
 ### Misc file-specific graphics rules
 
-gfx/pokemon/egg/unused_front.2bpp: rgbgfx += --columns
+gfx/pokemon/egg/static_front.2bpp: rgbgfx += --columns
 
 gfx/pokemon/spearow/normal.gbcpal: tools/gbcpal += --reverse
 gfx/pokemon/fearow/normal.gbcpal: tools/gbcpal += --reverse

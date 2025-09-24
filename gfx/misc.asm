@@ -14,11 +14,11 @@ Shrink2Pic::
 INCBIN "gfx/new_game/shrink2.2bpp.lz"
 
 
-SECTION "Unused Egg Pic", ROMX
+SECTION "Static Egg Pic", ROMX
 
-UnusedEggPic::
+StaticEggPic::
 ; The G/S Egg pic. This is shifted up a few pixels.
-INCBIN "gfx/pokemon/egg/unused_front.2bpp.lz"
+INCBIN "gfx/pokemon/egg/static_front.2bpp.lz"
 
 
 SECTION "The End", ROMX
