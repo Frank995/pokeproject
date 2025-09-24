@@ -15,44 +15,9 @@ _InterpretBattleMenu::
 	rst FarCall
 
 	call Draw2DMenu
-	farcall MobileTextBorder
 	call UpdateSprites
 	call ApplyTilemap
 	call Get2DMenuSelection
-	ret
-
-_InterpretMobileMenu::
-	ld hl, CopyMenuData
-	ld a, [wMenuData_2DMenuItemStringsBank]
-	rst FarCall
-
-	call Draw2DMenu
-	farcall MobileTextBorder
-	call UpdateSprites
-	call ApplyTilemap
-	call Init2DMenuCursorPosition
-	ld hl, w2DMenuFlags1
-	set _2DMENU_DISABLE_JOYPAD_FILTER_F, [hl]
-.loop
-	call DelayFrame
-	farcall Function10032e
-	ld a, [wcd2b]
-	and a
-	jr nz, .quit
-	call MobileMenuJoypad
-	ld a, [wMenuJoypadFilter]
-	and c
-	jr z, .loop
-	call Mobile_GetMenuSelection
-	ret
-
-.quit
-	ld a, [w2DMenuNumCols]
-	ld c, a
-	ld a, [w2DMenuNumRows]
-	call SimpleMultiply
-	ld [wMenuCursorPosition], a
-	and a
 	ret
 
 Draw2DMenu:

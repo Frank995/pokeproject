@@ -557,10 +557,6 @@ Function4a3aa:
 	ret
 
 Function4a485:
-	ld de, MobileMenuGFX
-	ld hl, vTiles2 tile $00
-	lb bc, BANK(MobileMenuGFX), 13
-	call Get2bpp
 	ret
 
 Function4a492:

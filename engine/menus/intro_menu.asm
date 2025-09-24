@@ -45,12 +45,6 @@ NewGame_ClearTilemapEtc:
 	call ClearWindowData
 	ret
 
-MysteryGift:
-	call UpdateTime
-	farcall DoMysteryGiftIfDayHasPassed
-	farcall DoMysteryGift
-	ret
-
 Option:
 	farcall _Option
 	ret
@@ -60,7 +54,7 @@ NewGame:
 	ld [wDebugFlags], a
 	call ResetWRAM
 	call NewGame_ClearTilemapEtc
-	call PlayerProfileSetup
+	farcall InitGender
 	call OakSpeech
 	call InitializeWorld
 
@@ -73,10 +67,6 @@ NewGame:
 	ld a, MAPSETUP_WARP
 	ldh [hMapEntryMethod], a
 	jp FinishContinueFunction
-
-PlayerProfileSetup:
-	farcall InitGender
-	ret
 
 if DEF(_DEBUG)
 DebugRoom: ; unreferenced
@@ -209,8 +199,6 @@ endc
 	farcall InitDecorations
 
 	farcall DeletePartyMonMail
-
-	farcall ClearGSBallFlag
 
 	call ResetGameTime
 	ret
@@ -360,7 +348,6 @@ Continue:
 	ld c, 20
 	call DelayFrames
 	farcall JumpRoamMons
-	farcall CopyMysteryGiftReceivedDecorationsToPC
 	farcall ClockContinue
 	ld a, [wSpawnAfterChampion]
 	cp SPAWN_LANCE
