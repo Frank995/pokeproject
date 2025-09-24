@@ -403,11 +403,11 @@ EZChat_MasterLoop:
 
 .SpawnObjects:
 	depixel 3, 1, 2, 5
-	ld a, SPRITE_ANIM_OBJ_EZCHAT_CURSOR
+	ld a, 0
 	call InitSpriteAnimStruct
 
 	depixel 8, 1, 2, 5
-	ld a, SPRITE_ANIM_OBJ_EZCHAT_CURSOR
+	ld a, 0
 	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
@@ -415,7 +415,7 @@ EZChat_MasterLoop:
 	ld [hl], a
 
 	depixel 9, 2, 2, 0
-	ld a, SPRITE_ANIM_OBJ_EZCHAT_CURSOR
+	ld a, 0
 	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
@@ -423,7 +423,7 @@ EZChat_MasterLoop:
 	ld [hl], a
 
 	depixel 10, 16
-	ld a, SPRITE_ANIM_OBJ_EZCHAT_CURSOR
+	ld a, 0
 	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
@@ -431,7 +431,7 @@ EZChat_MasterLoop:
 	ld [hl], a
 
 	depixel 10, 4
-	ld a, SPRITE_ANIM_OBJ_EZCHAT_CURSOR
+	ld a, 0
 	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
@@ -439,7 +439,7 @@ EZChat_MasterLoop:
 	ld [hl], a
 
 	depixel 10, 2
-	ld a, SPRITE_ANIM_OBJ_EZCHAT_CURSOR
+	ld a, 0
 	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
@@ -2466,7 +2466,7 @@ AnimateEZChatCursor:
 	jr .load
 
 .three
-	ld a, SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_2
+	ld a, 0
 	call ReinitSpriteAnimFrame
 	ld a, [wMobileCommsJumptableIndex]
 	sla a
@@ -2492,7 +2492,7 @@ AnimateEZChatCursor:
 	ret
 
 .four
-	ld a, SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_2
+	ld a, 0
 	call ReinitSpriteAnimFrame
 	ld a, [wcd2a]
 	sla a
@@ -2501,7 +2501,7 @@ AnimateEZChatCursor:
 	jr .load
 
 .five
-	ld a, SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_2
+	ld a, 0
 	call ReinitSpriteAnimFrame
 	ld a, [wcd2c]
 	sla a
@@ -2510,7 +2510,7 @@ AnimateEZChatCursor:
 	jr .load
 
 .six
-	ld a, SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_5
+	ld a, 0
 	call ReinitSpriteAnimFrame
 	; X = [wcd4a] * 8 + 24
 	ld a, [wcd4a]
@@ -2534,11 +2534,11 @@ AnimateEZChatCursor:
 	ld a, [wEZChatCursorYCoord]
 	cp $4
 	jr z, .cursor0
-	ld a, SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3
+	ld a, 0
 	jr .got_frameset
 
 .cursor0
-	ld a, SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_1
+	ld a, 0
 .got_frameset
 	call ReinitSpriteAnimFrame
 	ld a, [wEZChatCursorYCoord]
@@ -2590,12 +2590,12 @@ AnimateEZChatCursor:
 
 .nine
 	ld d, -13 * TILE_WIDTH
-	ld a, SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_7
+	ld a, 0
 	jr .eight_nine_load
 
 .eight
 	ld d, 2 * TILE_WIDTH
-	ld a, SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_6
+	ld a, 0
 .eight_nine_load
 	push de
 	call ReinitSpriteAnimFrame
@@ -2618,7 +2618,7 @@ AnimateEZChatCursor:
 	ret
 
 .ten
-	ld a, SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_1
+	ld a, 0
 	call ReinitSpriteAnimFrame
 	ld a, $8
 	ld e, a
@@ -2729,54 +2729,54 @@ AnimateEZChatCursor:
 	dbpixel  4, 12
 
 .FramesetsIDs_Two:
-	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 00
-	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 01
-	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 02
-	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 03
-	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 04
-	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 05
-	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 06
-	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 07
-	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 08
-	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 09
-	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 0a
-	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 0b
-	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 0c
-	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 0d
-	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 0e
-	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 0f
-	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 10
-	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 11
-	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 12
-	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 13
-	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 14
-	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 15
-	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 16
-	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 17
-	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 18
-	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 19
-	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 1a
-	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 1b
-	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 1c
-	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 1d
-	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 1e
-	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 1f
-	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 20
-	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 21
-	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 22
-	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 23
-	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 24
-	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 25
-	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 26
-	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 27
-	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 28
-	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 29
-	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 2a
-	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 2b
-	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_4 ; 2c
-	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_1 ; 2d
-	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_1 ; 2e
-	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_1 ; 2f
+	db 0 ; 00
+	db 0 ; 01
+	db 0 ; 02
+	db 0 ; 03
+	db 0 ; 04
+	db 0 ; 05
+	db 0 ; 06
+	db 0 ; 07
+	db 0 ; 08
+	db 0 ; 09
+	db 0 ; 0a
+	db 0 ; 0b
+	db 0 ; 0c
+	db 0 ; 0d
+	db 0 ; 0e
+	db 0 ; 0f
+	db 0 ; 10
+	db 0 ; 11
+	db 0 ; 12
+	db 0 ; 13
+	db 0 ; 14
+	db 0 ; 15
+	db 0 ; 16
+	db 0 ; 17
+	db 0 ; 18
+	db 0 ; 19
+	db 0 ; 1a
+	db 0 ; 1b
+	db 0 ; 1c
+	db 0 ; 1d
+	db 0 ; 1e
+	db 0 ; 1f
+	db 0 ; 20
+	db 0 ; 21
+	db 0 ; 22
+	db 0 ; 23
+	db 0 ; 24
+	db 0 ; 25
+	db 0 ; 26
+	db 0 ; 27
+	db 0 ; 28
+	db 0 ; 29
+	db 0 ; 2a
+	db 0 ; 2b
+	db 0 ; 2c
+	db 0 ; 2d
+	db 0 ; 2e
+	db 0 ; 2f
 
 .UpdateObjectFlags:
 	ld hl, wcd24
