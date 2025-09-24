@@ -1423,6 +1423,10 @@ MusicCommands:
 	dw Music_Ret
 	assert_table_length $100 - FIRST_MUSIC_CMD
 
+MusicE2:
+MusicE7:
+MusicE8:
+MusicEE:
 MusicF1:
 MusicF2:
 MusicF3:
@@ -1431,6 +1435,7 @@ MusicF5:
 MusicF6:
 MusicF7:
 MusicF8:
+MusicF9:
 	ret
 
 Music_Ret:
@@ -1622,78 +1627,6 @@ Music_JumpIf:
 	ld [hl], d
 	ret
 
-MusicEE:
-; unused
-; conditional jump
-; checks a byte in ram corresponding to the current channel
-; params: 2
-;		ll hh ; pointer
-
-; if condition is set, jump
-	; get channel
-	ld a, [wCurChannel]
-	maskbits NUM_MUSIC_CHANS
-	ld e, a
-	ld d, 0
-	; hl = wChannel1JumpCondition + channel id
-	ld hl, wChannel1JumpCondition
-	add hl, de
-	; if set, jump
-	ld a, [hl]
-	and a
-	jr nz, .jump
-; skip to next command
-	; get address
-	ld hl, CHANNEL_MUSIC_ADDRESS
-	add hl, bc
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	; skip pointer
-	inc de
-	inc de
-	; update address
-	ld [hl], d
-	dec hl
-	ld [hl], e
-	ret
-
-.jump
-	; reset jump flag
-	ld [hl], 0
-	; de = pointer
-	call GetMusicByte
-	ld e, a
-	call GetMusicByte
-	ld d, a
-	; update address
-	ld hl, CHANNEL_MUSIC_ADDRESS
-	add hl, bc
-	ld [hl], e
-	inc hl
-	ld [hl], d
-	ret
-
-MusicF9:
-; unused
-; sets some flag
-; params: 0
-	ld a, TRUE
-	ld [wUnusedMusicF9Flag], a
-	ret
-
-MusicE2:
-; unused
-; params: 1
-	call GetMusicByte
-	ld hl, CHANNEL_FIELD2C
-	add hl, bc
-	ld [hl], a
-	ld hl, CHANNEL_FLAGS2
-	add hl, bc
-	set SOUND_UNKN_0B, [hl]
-	ret
-
 Music_Vibrato:
 ; vibrato
 ; params: 2
@@ -1795,18 +1728,6 @@ Music_PitchOffset:
 	ld [hl], a
 	ret
 
-MusicE7:
-; unused
-; params: 1
-	ld hl, CHANNEL_FLAGS2
-	add hl, bc
-	set SOUND_UNKN_0E, [hl]
-	call GetMusicByte
-	ld hl, CHANNEL_FIELD29
-	add hl, bc
-	ld [hl], a
-	ret
-
 Music_DutyCyclePattern:
 ; sequence of 4 duty cycles to be looped
 ; params: 1 (4 2-bit duty cycle arguments)
@@ -1823,18 +1744,6 @@ Music_DutyCyclePattern:
 	; update duty cycle
 	and $c0 ; only uses top 2 bits
 	ld hl, CHANNEL_DUTY_CYCLE
-	add hl, bc
-	ld [hl], a
-	ret
-
-MusicE8:
-; unused
-; params: 1
-	ld hl, CHANNEL_FLAGS2
-	add hl, bc
-	set SOUND_UNKN_0D, [hl]
-	call GetMusicByte
-	ld hl, CHANNEL_FIELD2A
 	add hl, bc
 	ld [hl], a
 	ret
