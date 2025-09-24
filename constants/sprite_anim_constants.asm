@@ -173,7 +173,6 @@ DEF NUM_SPRITE_ANIM_FRAMESETS EQU const_value
 	const SPRITE_ANIM_OAMSET_GS_INTRO_SHELLDER_2         ; 05
 	const SPRITE_ANIM_OAMSET_GS_INTRO_MAGIKARP_1         ; 06
 	const SPRITE_ANIM_OAMSET_GS_INTRO_MAGIKARP_2         ; 07
-	const SPRITE_ANIM_OAMSET_GS_INTRO_UNUSED_LAPRAS      ; 08
 	const SPRITE_ANIM_OAMSET_GS_INTRO_LAPRAS_1           ; 09
 	const SPRITE_ANIM_OAMSET_GS_INTRO_LAPRAS_2           ; 0a
 	const SPRITE_ANIM_OAMSET_GS_INTRO_LAPRAS_3           ; 0b
@@ -232,18 +231,6 @@ DEF NUM_SPRITE_ANIM_FRAMESETS EQU const_value
 	const SPRITE_ANIM_OAMSET_PARTY_MON_WITH_ITEM_2       ; 40
 	const SPRITE_ANIM_OAMSET_MAGNET_TRAIN_RED_1          ; 41
 	const SPRITE_ANIM_OAMSET_MAGNET_TRAIN_RED_2          ; 42
-	const SPRITE_ANIM_OAMSET_UNUSED_43                   ; 43
-	const SPRITE_ANIM_OAMSET_UNUSED_44                   ; 44
-	const SPRITE_ANIM_OAMSET_UNUSED_45                   ; 45
-	const SPRITE_ANIM_OAMSET_UNUSED_46                   ; 46
-	const SPRITE_ANIM_OAMSET_UNUSED_47                   ; 47
-	const SPRITE_ANIM_OAMSET_UNUSED_48                   ; 48
-	const SPRITE_ANIM_OAMSET_UNUSED_49                   ; 49
-	const SPRITE_ANIM_OAMSET_UNUSED_4A                   ; 4a
-	const SPRITE_ANIM_OAMSET_UNUSED_4B                   ; 4b
-	const SPRITE_ANIM_OAMSET_UNUSED_4C                   ; 4c
-	const SPRITE_ANIM_OAMSET_UNUSED_4D                   ; 4d
-	const SPRITE_ANIM_OAMSET_UNUSED_4E                   ; 4e
 	const SPRITE_ANIM_OAMSET_LEAF                        ; 4f
 	const SPRITE_ANIM_OAMSET_TREE_1                      ; 50
 	const SPRITE_ANIM_OAMSET_CUT_TREE_2                  ; 51
