@@ -1624,16 +1624,6 @@ Function108c80:
 	ldh [rVBK], a
 	ret
 
-.DebugTradeData:
-	db VENUSAUR
-	dname "ゲーフり", NAME_LENGTH_JAPANESE ; "GEEFURI" (Game Freak)
-	dw $0123
-	dname "かびーん", NAME_LENGTH_JAPANESE ; "KABIIN"
-	db CHARIZARD
-	dname "クりーチャ", NAME_LENGTH_JAPANESE ; "CREATURE"
-	dw $0456
-	dname "マツミヤ", NAME_LENGTH_JAPANESE ; "MATSUMIYA"
-
 LoadMobileAdapterPalette:
 	ld a, [wc74e]
 	and $7f

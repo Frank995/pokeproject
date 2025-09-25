@@ -182,10 +182,6 @@ EggStatsJoypad:
 .check
 	bit B_PAD_A, a
 	jr nz, .quit
-if DEF(_DEBUG)
-	cp PAD_START
-	jr z, .hatch
-endc
 	and PAD_DOWN | PAD_UP | PAD_A | PAD_B
 	jp StatsScreen_JoypadAction
 
@@ -193,39 +189,6 @@ endc
 	ld h, 7
 	call StatsScreen_SetJumptableIndex
 	ret
-
-if DEF(_DEBUG)
-.hatch
-	ld a, [wMonType]
-	or a
-	jr nz, .skip
-	push bc
-	push de
-	push hl
-	ld a, [wCurPartyMon]
-	ld bc, PARTYMON_STRUCT_LENGTH
-	ld hl, wPartyMon1Happiness
-	call AddNTimes
-	ld [hl], 1
-	ld a, 1
-	ld [wTempMonHappiness], a
-	ld a, 127
-	ld [wStepCount], a
-	ld de, .HatchSoonString
-	hlcoord 8, 17
-	call PlaceString
-	ld hl, wStatsScreenFlags
-	set STATS_SCREEN_ANIMATE_MON, [hl]
-	pop hl
-	pop de
-	pop bc
-.skip
-	xor a
-	jp StatsScreen_JoypadAction
-
-.HatchSoonString:
-	db "▶HATCH SOON!@"
-endc
 
 StatsScreen_LoadPage:
 	call StatsScreen_LoadGFX
@@ -1361,17 +1324,6 @@ EggStatsScreen:
 	ld de, FiveQMarkString
 	hlcoord 11, 5
 	call PlaceString
-if DEF(_DEBUG)
-	ld de, .PushStartString
-	hlcoord 8, 17
-	call PlaceString
-	jr .placed_push_start
-
-.PushStartString:
-	db "▶PUSH START.@"
-
-.placed_push_start
-endc
 	ld a, [wTempMonHappiness] ; egg status
 	ld de, EggSoonString
 	cp $6

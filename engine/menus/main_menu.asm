@@ -8,7 +8,6 @@
 	const MAINMENUITEM_CONTINUE       ; 0
 	const MAINMENUITEM_NEW_GAME       ; 1
 	const MAINMENUITEM_OPTION         ; 2
-	const MAINMENUITEM_DEBUG_ROOM     ; 3
 
 MainMenu:
 .loop
@@ -55,18 +54,12 @@ MainMenu:
 	db "CONTINUE@"
 	db "NEW GAME@"
 	db "OPTION@"
-if DEF(_DEBUG)
-	db "DEBUG ROOM@"
-endc
 
 .Jumptable:
 ; entries correspond to MAINMENUITEM_* constants
 	dw MainMenu_Continue
 	dw MainMenu_NewGame
 	dw MainMenu_Option
-if DEF(_DEBUG)
-	dw MainMenu_DebugRoom
-endc
 
 MainMenuItems:
 ; entries correspond to MAINMENU_* constants
@@ -78,13 +71,10 @@ MainMenuItems:
 	db -1
 
 	; MAINMENU_CONTINUE
-	db 3 + DEF(_DEBUG)
+	db 3
 	db MAINMENUITEM_CONTINUE
 	db MAINMENUITEM_NEW_GAME
 	db MAINMENUITEM_OPTION
-if DEF(_DEBUG)
-	db MAINMENUITEM_DEBUG_ROOM
-endc
 	db -1
 
 MainMenu_GetWhichMenu:
@@ -235,9 +225,3 @@ MainMenu_Option:
 MainMenu_Continue:
 	farcall Continue
 	ret
-
-if DEF(_DEBUG)
-MainMenu_DebugRoom:
-	farcall _DebugRoom
-	ret
-endc
