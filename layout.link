@@ -50,12 +50,12 @@ ROMX $08
 	"Tileset Data 3"
 	"Egg Moves"
 ROMX $09
-	"bank9"
+	"Engine 6"
 ROMX $0a
-	"bankA"
+	"Engine 7"
 	"Trainer Backpics"
 ROMX $0b
-	"bankB"
+	"Engine 8"
 ROMX $0c
 	"Tileset Data 4"
 ROMX $0d
@@ -65,18 +65,17 @@ ROMX $0e
 ROMX $0f
 	"Battle Core"
 ROMX $10
-	"bank10"
+	"Engine 9"
 	"Evolutions and Attacks"
 ROMX $11
-	"bank11"
+	"Engine 10"
 ROMX $12
 	"Crystal Features 1"
 ROMX $13
-	"bank13"
+	"Engine 11"
 	"Shrink Pics"
-	"bank13_2"
 ROMX $14
-	"bank14"
+	"Engine 12"
 	"Static Egg Pic"
 ROMX $15
 	"Map Scripts 1"
@@ -101,15 +100,15 @@ ROMX $1e
 ROMX $1f
 	"Map Scripts 10"
 ROMX $20
-	"bank20"
+	"Engine 13"
 ROMX $21
-	"bank21"
+	"Engine 14"
 ROMX $22
 	"Crystal Features 2"
 ROMX $23
-	"bank23"
+	"Engine 15"
 ROMX $24
-	"bank24"
+	"Engine 16"
 ROMX $25
 	"Maps"
 	"Events"
@@ -130,7 +129,7 @@ ROMX $2c
 ROMX $2d
 	"Tileset Data 5"
 ROMX $2e
-	"bank2E"
+	"Engine 17"
 ROMX $2f
 	"Phone Scripts 2"
 ROMX $30
@@ -138,7 +137,7 @@ ROMX $30
 ROMX $31
 	"Sprites 2"
 ROMX $32
-	"bank32"
+	"Engine 18"
 	"The End"
 ROMX $33
 	"Move Animations"
@@ -153,10 +152,10 @@ ROMX $36
 ROMX $37
 	"Tileset Data 6"
 ROMX $38
-	"bank38"
+	"Engine 19"
 ROMX $39
 	"Copyright"
-	"bank39"
+	"Engine 20"
 ROMX $3a
 	"Audio"
 	"Songs 1"
@@ -169,13 +168,13 @@ ROMX $3c
 ROMX $3d
 	"Songs 4"
 ROMX $3e
-	"bank3E"
+	"Engine 21"
 ROMX $3f
-	"bank3F"
+	"Engine 22"
 ROMX $40
 	"mobile40"
 ROMX $41
-	"bank41"
+	"Engine 23"
 ROMX $42
 	"mobile42"
 	"Intro Logo"
@@ -298,7 +297,7 @@ ROMX $77
 	"Unown Font"
 	"Print Party"
 	"Tileset Data 7"
-	"bank77"
+	"Engine 24"
 	"Pokégear GFX"
 	"European Mail"
 ROMX $78

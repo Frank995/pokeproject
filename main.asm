@@ -94,7 +94,7 @@ SECTION "Clock Reset", ROMX
 INCLUDE "engine/rtc/restart_clock.asm"
 
 
-SECTION "bank9", ROMX
+SECTION "Engine 6", ROMX
 
 INCLUDE "data/text_buffers.asm"
 INCLUDE "engine/menus/menu.asm"
@@ -118,14 +118,14 @@ INCLUDE "data/moves/effects.asm"
 INCLUDE "engine/events/kurt_selectquantity_interpretjoypad.asm"
 
 
-SECTION "bankA", ROMX
+SECTION "Engine 7", ROMX
 
 INCLUDE "engine/link/link.asm"
 INCLUDE "engine/overworld/wildmons.asm"
 INCLUDE "engine/battle/link_result.asm"
 
 
-SECTION "bankB", ROMX
+SECTION "Engine 8", ROMX
 
 INCLUDE "engine/battle/trainer_huds.asm"
 INCLUDE "data/trainers/class_names.asm"
@@ -158,14 +158,14 @@ INCLUDE "engine/battle/core.asm"
 INCLUDE "data/battle/effect_command_pointers.asm"
 
 
-SECTION "bank10", ROMX
+SECTION "Engine 9", ROMX
 
 INCLUDE "engine/pokedex/pokedex.asm"
 INCLUDE "data/moves/moves.asm"
 INCLUDE "engine/pokemon/evolve.asm"
 
 
-SECTION "bank11", ROMX
+SECTION "Engine 10", ROMX
 
 INCLUDE "engine/events/fruit_trees.asm"
 INCLUDE "engine/battle/ai/move.asm"
@@ -187,7 +187,19 @@ INCLUDE "mobile/mobile_12_2.asm"
 INCLUDE "engine/events/buena_menu.asm"
 
 
-SECTION "bank13", ROMX
+SECTION "Crystal Features 2", ROMX
+
+INCLUDE "engine/events/kurt.asm"
+INCLUDE "engine/gfx/player_gfx.asm"
+INCLUDE "mobile/mobile_22.asm"
+INCLUDE "engine/events/unown_walls.asm"
+INCLUDE "engine/events/buena.asm"
+INCLUDE "engine/events/dratini.asm"
+INCLUDE "engine/events/battle_tower/rules.asm"
+INCLUDE "mobile/mobile_22_2.asm"
+
+
+SECTION "Engine 11", ROMX
 
 INCLUDE "engine/tilesets/map_palettes.asm"
 INCLUDE "gfx/tileset_palette_maps.asm"
@@ -198,10 +210,6 @@ INCLUDE "engine/events/checksave.asm"
 INCLUDE "data/maps/scenes.asm"
 INCLUDE "engine/overworld/load_map_part.asm"
 INCLUDE "engine/phone/phonering_copytilemapatonce.asm"
-
-
-SECTION "bank13_2", ROMX
-
 INCLUDE "engine/link/link_2.asm"
 INCLUDE "engine/rtc/reset_password.asm"
 INCLUDE "engine/menus/delete_save.asm"
@@ -224,7 +232,7 @@ INCLUDE "engine/movie/gbc_only.asm"
 INCLUDE "engine/events/poke_seer.asm"
 
 
-SECTION "bank14", ROMX
+SECTION "Engine 12", ROMX
 
 INCLUDE "engine/pokemon/party_menu.asm"
 INCLUDE "engine/events/poisonstep.asm"
@@ -263,7 +271,7 @@ INCLUDE "data/phone/text/parry_caller.asm"
 INCLUDE "data/phone/text/erin_caller.asm"
 
 
-SECTION "bank20", ROMX
+SECTION "Engine 13", ROMX
 
 INCLUDE "engine/overworld/player_movement.asm"
 INCLUDE "engine/events/engine_flags.asm"
@@ -272,7 +280,7 @@ INCLUDE "data/text/battle.asm"
 INCLUDE "engine/debug/color_picker.asm"
 
 
-SECTION "bank21", ROMX
+SECTION "Engine 14", ROMX
 
 INCLUDE "engine/printer/printer_serial.asm"
 INCLUDE "engine/printer/printer.asm"
@@ -280,19 +288,8 @@ INCLUDE "gfx/battle_anims.asm"
 INCLUDE "engine/events/halloffame.asm"
 
 
-SECTION "Crystal Features 2", ROMX
 
-INCLUDE "engine/events/kurt.asm"
-INCLUDE "engine/gfx/player_gfx.asm"
-INCLUDE "mobile/mobile_22.asm"
-INCLUDE "engine/events/unown_walls.asm"
-INCLUDE "engine/events/buena.asm"
-INCLUDE "engine/events/dratini.asm"
-INCLUDE "engine/events/battle_tower/rules.asm"
-INCLUDE "mobile/mobile_22_2.asm"
-
-
-SECTION "bank23", ROMX
+SECTION "Engine 15", ROMX
 
 INCLUDE "engine/tilesets/timeofday_pals.asm"
 INCLUDE "engine/battle/battle_transition.asm"
@@ -303,7 +300,7 @@ INCLUDE "engine/sprite_anims/core.asm"
 INCLUDE "engine/gfx/mon_icons.asm"
 
 
-SECTION "bank24", ROMX
+SECTION "Engine 16", ROMX
 
 INCLUDE "engine/phone/phone.asm"
 INCLUDE "engine/rtc/timeset.asm"
@@ -349,7 +346,7 @@ INCLUDE "data/phone/text/parry_overworld.asm"
 INCLUDE "data/phone/text/erin_overworld.asm"
 
 
-SECTION "bank2E", ROMX
+SECTION "Engine 17", ROMX
 
 INCLUDE "engine/events/map_name_sign.asm"
 INCLUDE "engine/events/checkforhiddenitems.asm"
@@ -398,7 +395,7 @@ INCLUDE "engine/phone/scripts/generic_callee.asm"
 INCLUDE "engine/events/trainer_scripts.asm"
 
 
-SECTION "bank32", ROMX
+SECTION "Engine 18", ROMX
 
 INCLUDE "engine/battle_anims/bg_effects.asm"
 INCLUDE "data/moves/animations.asm"
@@ -444,7 +441,7 @@ INCLUDE "gfx/pokemon/unown_frame_pointers.asm"
 INCLUDE "gfx/pokemon/unown_frames.asm"
 
 
-SECTION "bank38", ROMX
+SECTION "Engine 19", ROMX
 
 INCLUDE "engine/events/print_unown_2.asm"
 INCLUDE "engine/games/card_flip.asm"
@@ -452,14 +449,14 @@ INCLUDE "engine/games/unown_puzzle.asm"
 INCLUDE "engine/pokemon/bills_pc.asm"
 
 
-SECTION "bank39", ROMX
+SECTION "Engine 20", ROMX
 
 INCLUDE "engine/menus/options_menu.asm"
 INCLUDE "engine/movie/splash.asm"
 INCLUDE "engine/movie/intro.asm"
 
 
-SECTION "bank3E", ROMX
+SECTION "Engine 21", ROMX
 
 INCLUDE "engine/gfx/load_font.asm"
 INCLUDE "engine/link/time_capsule.asm"
@@ -473,7 +470,7 @@ INCLUDE "engine/battle/hidden_power.asm"
 INCLUDE "engine/battle/misc.asm"
 
 
-SECTION "bank3F", ROMX
+SECTION "Engine 22", ROMX
 
 INCLUDE "engine/tilesets/tileset_anims.asm"
 INCLUDE "engine/events/npc_trade.asm"
@@ -485,7 +482,7 @@ SECTION "mobile40", ROMX
 INCLUDE "mobile/mobile_40.asm"
 
 
-SECTION "bank41", ROMX
+SECTION "Engine 23", ROMX
 
 INCLUDE "engine/gfx/dma_transfer.asm"
 INCLUDE "gfx/emotes.asm"
@@ -633,7 +630,7 @@ SECTION "Print Party", ROMX
 INCLUDE "engine/printer/print_party.asm"
 
 
-SECTION "bank77", ROMX
+SECTION "Engine 24", ROMX
 
 INCLUDE "engine/rtc/print_hours_mins.asm"
 INCLUDE "engine/events/diploma.asm"
