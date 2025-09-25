@@ -187,6 +187,7 @@ if DEF(_DEBUG)
 	giveitem HM_STRENGTH
 	giveitem HM_FLY
 	giveitem HM_CUT
+	giveitem MASTER_BALL, 50
 	setflag ENGINE_ZEPHYRBADGE
 	setflag ENGINE_HIVEBADGE
 	setflag ENGINE_PLAINBADGE

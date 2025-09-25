@@ -6210,7 +6210,17 @@ LoadEnemyMon:
 
 .Happiness:
 ; Set happiness
+	ld a, [wBattleMode]
+	dec a
+	jr nz, .UseBaseHappiness
+
+	; We're in a trainer battle, use trainer-specific happiness
+	call GetTrainerHappiness
+	jr .SetHappiness
+
+.UseBaseHappiness:
 	ld a, BASE_HAPPINESS
+.SetHappiness:
 	ld [wEnemyMonHappiness], a
 ; Set level
 	ld a, [wCurPartyLevel]

@@ -123,6 +123,7 @@ SECTION "Engine 7", ROMX
 INCLUDE "engine/link/link.asm"
 INCLUDE "engine/overworld/wildmons.asm"
 INCLUDE "engine/battle/link_result.asm"
+INCLUDE "engine/battle/read_trainer_happiness.asm"
 
 
 SECTION "Engine 8", ROMX
