@@ -179,7 +179,59 @@ CyndaquilPokeBallScript:
 	playsound SFX_CAUGHT_MON
 	waitsfx
 	promptbutton
+if DEF(_DEBUG)
+	givepoke MEW, 100
+	givepoke MEWTWO, 100
+	givepoke PIKACHU, 5, BERRY
+	giveitem HM_SURF
+	giveitem HM_STRENGTH
+	giveitem HM_FLY
+	giveitem HM_CUT
+	setflag ENGINE_ZEPHYRBADGE
+	setflag ENGINE_HIVEBADGE
+	setflag ENGINE_PLAINBADGE
+	setflag ENGINE_FOGBADGE
+	setflag ENGINE_MINERALBADGE
+	setflag ENGINE_STORMBADGE
+	setflag ENGINE_GLACIERBADGE
+	setflag ENGINE_RISINGBADGE
+	setflag ENGINE_BOULDERBADGE
+	setflag ENGINE_CASCADEBADGE
+	setflag ENGINE_THUNDERBADGE
+	setflag ENGINE_RAINBOWBADGE
+	setflag ENGINE_SOULBADGE
+	setflag ENGINE_MARSHBADGE
+	setflag ENGINE_VOLCANOBADGE
+	setflag ENGINE_EARTHBADGE
+	setflag ENGINE_FLYPOINT_PLAYERS_HOUSE
+	setflag ENGINE_FLYPOINT_PALLET
+	setflag ENGINE_FLYPOINT_VIRIDIAN
+	setflag ENGINE_FLYPOINT_PEWTER
+	setflag ENGINE_FLYPOINT_CERULEAN
+	setflag ENGINE_FLYPOINT_ROCK_TUNNEL
+	setflag ENGINE_FLYPOINT_VERMILION
+	setflag ENGINE_FLYPOINT_LAVENDER
+	setflag ENGINE_FLYPOINT_SAFFRON
+	setflag ENGINE_FLYPOINT_CELADON
+	setflag ENGINE_FLYPOINT_FUCHSIA
+	setflag ENGINE_FLYPOINT_CINNABAR
+	setflag ENGINE_FLYPOINT_INDIGO_PLATEAU
+	setflag ENGINE_FLYPOINT_NEW_BARK
+	setflag ENGINE_FLYPOINT_CHERRYGROVE
+	setflag ENGINE_FLYPOINT_VIOLET
+	setflag ENGINE_FLYPOINT_AZALEA
+	setflag ENGINE_FLYPOINT_CIANWOOD
+	setflag ENGINE_FLYPOINT_GOLDENROD
+	setflag ENGINE_FLYPOINT_OLIVINE
+	setflag ENGINE_FLYPOINT_ECRUTEAK
+	setflag ENGINE_FLYPOINT_MAHOGANY
+	setflag ENGINE_FLYPOINT_LAKE_OF_RAGE
+	setflag ENGINE_FLYPOINT_BLACKTHORN
+	setflag ENGINE_FLYPOINT_SILVER_CAVE
+	setflag ENGINE_FLYPOINT_UNUSED
+else
 	givepoke CYNDAQUIL, 5, BERRY
+endc
 	closetext
 	readvar VAR_FACING
 	ifequal RIGHT, ElmDirectionsScript
@@ -724,6 +776,10 @@ AfterChikoritaMovement:
 	step_end
 
 ElmText_Intro:
+if DEF(_DEBUG)
+	text "Foo"
+	done
+else
 	text "ELM: <PLAY_G>!"
 	line "There you are!"
 
@@ -761,13 +817,19 @@ ElmText_Intro:
 	para "that I recently"
 	line "caught."
 	done
+endc
 
 ElmText_Accepted:
+if DEF(_DEBUG)
+	text "Foo"
+	done
+else
 	text "Thanks, <PLAY_G>!"
 
 	para "You're a great"
 	line "help!"
 	done
+endc
 
 ElmText_Refused:
 	text "But… Please, I"
@@ -775,6 +837,10 @@ ElmText_Refused:
 	done
 
 ElmText_ResearchAmbitions:
+if DEF(_DEBUG)
+	text "Foo"
+	done
+else
 	text "When I announce my"
 	line "findings, I'm sure"
 
@@ -787,8 +853,13 @@ ElmText_ResearchAmbitions:
 	para "You can count on"
 	line "it!"
 	done
+endc
 
 ElmText_GotAnEmail:
+if DEF(_DEBUG)
+	text "Foo"
+	done
+else
 	text "Oh, hey! I got an"
 	line "e-mail!"
 
@@ -797,8 +868,13 @@ ElmText_GotAnEmail:
 
 	para "Okay…"
 	done
+endc
 
 ElmText_MissionFromMrPokemon:
+if DEF(_DEBUG)
+	text "Foo"
+	done
+else
 	text "Hey, listen."
 
 	para "I have an acquain-"
@@ -830,8 +906,13 @@ ElmText_MissionFromMrPokemon:
 	para "<PLAY_G>, can you"
 	line "go in our place?"
 	done
+endc
 
 ElmText_ChooseAPokemon:
+if DEF(_DEBUG)
+	text "Foo"
+	done
+else
 	text "I want you to"
 	line "raise one of the"
 
@@ -844,6 +925,7 @@ ElmText_ChooseAPokemon:
 
 	para "Go on. Pick one!"
 	done
+endc
 
 ElmText_LetYourMonBattleIt:
 	text "If a wild #MON"
@@ -857,22 +939,37 @@ LabWhereGoingText:
 	done
 
 TakeCyndaquilText:
+if DEF(_DEBUG)
+	text "Foo"
+	done
+else
 	text "ELM: You'll take"
 	line "CYNDAQUIL, the"
 	cont "fire #MON?"
 	done
+endc
 
 TakeTotodileText:
+if DEF(_DEBUG)
+	text "Foo"
+	done
+else
 	text "ELM: Do you want"
 	line "TOTODILE, the"
 	cont "water #MON?"
 	done
+endc
 
 TakeChikoritaText:
+if DEF(_DEBUG)
+	text "Foo"
+	done
+else
 	text "ELM: So, you like"
 	line "CHIKORITA, the"
 	cont "grass #MON?"
 	done
+endc
 
 DidntChooseStarterText:
 	text "ELM: Think it over"
@@ -896,6 +993,10 @@ ReceivedStarterText:
 	done
 
 ElmDirectionsText1:
+if DEF(_DEBUG)
+	text "Foo"
+	done
+else
 	text "MR.#MON lives a"
 	line "little bit beyond"
 
@@ -914,8 +1015,13 @@ ElmDirectionsText1:
 	para "number. Call me if"
 	line "anything comes up!"
 	done
+endc
 
 ElmDirectionsText2:
+if DEF(_DEBUG)
+	text "Foo"
+	done
+else
 	text "If your #MON is"
 	line "hurt, you should"
 
@@ -925,6 +1031,7 @@ ElmDirectionsText2:
 	para "Feel free to use"
 	line "it anytime."
 	done
+endc
 
 ElmDirectionsText3:
 	text "<PLAY_G>, I'm"
@@ -937,6 +1044,10 @@ GotElmsNumberText:
 	done
 
 ElmDescribesMrPokemonText:
+if DEF(_DEBUG)
+	text "Foo"
+	done
+else
 	text "MR.#MON goes"
 	line "everywhere and"
 	cont "finds rarities."
@@ -945,6 +1056,7 @@ ElmDescribesMrPokemonText:
 	line "just rare and"
 	cont "not very useful…"
 	done
+endc
 
 ElmPokeBallText:
 	text "It contains a"

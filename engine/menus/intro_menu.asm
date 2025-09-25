@@ -49,20 +49,34 @@ Option:
 	farcall _Option
 	ret
 
+if DEF(_DEBUG)
+DebugName:
+	dname "STOCAZZ", NAME_LENGTH
+endc
+
 NewGame:
 	xor a
 	ld [wDebugFlags], a
 	call ResetWRAM
 	call NewGame_ClearTilemapEtc
 	farcall InitGender
+
+if DEF(_DEBUG)
+	; Init name
+	ld a, "@"
+	ld bc, NAME_LENGTH
+	ld hl, wPlayerName
+	call ByteFill
+	ld hl, wPlayerName
+	ld de, DebugName
+	call InitName
+else
 	call OakSpeech
+endc
 	call InitializeWorld
 
 	ld a, LANDMARK_NEW_BARK_TOWN
 	ld [wPrevLandmark], a
-
-	ld a, SPAWN_HOME
-	ld [wDefaultSpawnpoint], a
 
 	ld a, MAPSETUP_WARP
 	ldh [hMapEntryMethod], a
