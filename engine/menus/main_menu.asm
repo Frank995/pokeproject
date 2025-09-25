@@ -235,3 +235,9 @@ MainMenu_Option:
 MainMenu_Continue:
 	farcall Continue
 	ret
+
+if DEF(_DEBUG)
+MainMenu_DebugRoom:
+	farcall _DebugRoom
+	ret
+endc

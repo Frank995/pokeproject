@@ -1309,7 +1309,6 @@ LinkTradeOTPartymonMenuLoop:
 	jp LinkTradeOTPartymonMenuCheckCancel
 
 LinkTrade_PlayerPartyMenu:
-	farcall InitMG_Mobile_LinkTradePalMap
 	xor a
 	ld [wMonType], a
 	ld a, PAD_A | PAD_UP | PAD_DOWN

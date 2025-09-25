@@ -9,14 +9,7 @@ __LoadTradeScreenBorderGFX:
 	ret
 
 LoadMobileTradeBorderTilemap:
-	ld hl, MobileTradeBorderTilemap
-	decoord 0, 0
-	ld bc, SCREEN_AREA
-	call CopyBytes
 	ret
-
-MobileTradeBorderTilemap:
-INCBIN "gfx/trade/border_mobile.tilemap"
 
 CableTradeBorderTopTilemap:
 INCBIN "gfx/trade/border_cable_top.tilemap"
@@ -97,7 +90,6 @@ _LinkTextbox:
 InitTradeSpeciesList:
 	call _LoadTradeScreenBorderGFX
 	call LoadCableTradeBorderTilemap
-	farcall InitMG_Mobile_LinkTradePalMap
 	farcall PlaceTradePartnerNamesAndParty
 	hlcoord 10, 17
 	ld de, .CancelString
@@ -123,7 +115,6 @@ LoadTradeRoomBGPals:
 	ret
 
 LoadCableTradeBorderTilemap:
-	call LoadMobileTradeBorderTilemap
 	ld hl, CableTradeBorderTopTilemap
 	decoord 0, 0
 	ld bc, 2 * SCREEN_WIDTH
