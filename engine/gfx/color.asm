@@ -1,47 +1,46 @@
 INCLUDE "engine/gfx/sgb_layouts.asm"
 
-DEF SHINY_ATK_MASK EQU %0010
-DEF SHINY_DEF_DV EQU 10
-DEF SHINY_SPD_DV EQU 10
-DEF SHINY_SPC_DV EQU 10
+DEF SHINY_DVS_SUM EQU 57
 
 CheckShininess:
 ; Check if a mon is shiny by DVs at bc.
 ; Return carry if shiny.
+	; load first byte (Atk/Def)
+	ld a, [bc]         ; a = wTempMonDVs (ATK/DEF packed)
+	ld h, a            ; keep a copy in h
 
-	ld l, c
-	ld h, b
+	; --- Extract ATK DV ---
+	and %11110000      ; isolate upper nibble
+	swap a             ; shift down
+	ld l, a            ; l = atk
 
-; Attack
-	ld a, [hl]
-	and SHINY_ATK_MASK << 4
-	jr z, .not_shiny
+	; --- Extract DEF DV ---
+	ld a, h            ; restore first byte
+	and %00001111      ; isolate lower nibble
+	add l              ; add to atk
+	ld l, a            ; l = atk+def
 
-; Defense
-	ld a, [hli]
-	and %1111
-	cp SHINY_DEF_DV
-	jr nz, .not_shiny
+	; --- Load second byte (Spe/Spc) ---
+	inc bc             ; increase to get second byte
+	ld a, [bc]
+	ld h, a            ; keep a copy
 
-; Speed
-	ld a, [hl]
-	and %1111 << 4
-	cp SHINY_SPD_DV << 4
-	jr nz, .not_shiny
+	; --- Extract SPE DV ---
+	and %11110000
+	swap a
+	add l              ; add to sum
+	ld l, a            ; l = atk+def+spe
 
-; Special
-	ld a, [hl]
-	and %1111
-	cp SHINY_SPC_DV
-	jr nz, .not_shiny
+	; --- Extract SPC DV ---
+	ld a, h
+	and %00001111
+	add l              ; add to sum
 
-; shiny
-	scf
-	ret
+	; --- Compare with threshold (d) ---
+	cp SHINY_DVS_SUM   ; sets carry if A < SHINY_DVS_SUM
+	ccf                ; flip carry: now carry=1 if A >= D
 
-.not_shiny
-	and a
-	ret
+    ret
 
 InitPartyMenuPalettes:
 	ld hl, PalPacket_PartyMenu + 1
