@@ -928,10 +928,15 @@ else
 endc
 
 ElmText_LetYourMonBattleIt:
+if DEF(_DEBUG)
+	text "Foo"
+	done
+else
 	text "If a wild #MON"
 	line "appears, let your"
 	cont "#MON battle it!"
 	done
+endc
 
 LabWhereGoingText:
 	text "ELM: Wait! Where"
@@ -972,18 +977,28 @@ else
 endc
 
 DidntChooseStarterText:
+if DEF(_DEBUG)
+	text "Foo"
+	done
+else
 	text "ELM: Think it over"
 	line "carefully."
 
 	para "Your partner is"
 	line "important."
 	done
+endc
 
 ChoseStarterText:
+if DEF(_DEBUG)
+	text "Foo"
+	done
+else
 	text "ELM: I think"
 	line "that's a great"
 	cont "#MON too!"
 	done
+endc
 
 ReceivedStarterText:
 	text "<PLAYER> received"
@@ -1034,14 +1049,24 @@ else
 endc
 
 ElmDirectionsText3:
+if DEF(_DEBUG)
+	text "Foo"
+	done
+else
 	text "<PLAY_G>, I'm"
 	line "counting on you!"
 	done
+endc
 
 GotElmsNumberText:
+if DEF(_DEBUG)
+	text "Foo"
+	done
+else
 	text "<PLAYER> got ELM's"
 	line "phone number."
 	done
+endc
 
 ElmDescribesMrPokemonText:
 if DEF(_DEBUG)

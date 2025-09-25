@@ -211,6 +211,10 @@ MomWalksBackMovement:
 	step_end
 
 ElmsLookingForYouText:
+if DEF(_DEBUG)
+	text "Foo"
+	done
+else
 	text "Oh, <PLAYER>…! Our"
 	line "neighbor, PROF."
 
@@ -229,8 +233,13 @@ ElmsLookingForYouText:
 
 	para "Here you go!"
 	done
+endc
 
 MomGivesPokegearText:
+if DEF(_DEBUG)
+	text "Foo"
+	done
+else
 	text "#MON GEAR, or"
 	line "just #GEAR."
 
@@ -244,6 +253,7 @@ MomGivesPokegearText:
 	para "You mustn't forget"
 	line "that!"
 	done
+endc
 
 IsItDSTText:
 	text "Is it Daylight"
@@ -251,6 +261,10 @@ IsItDSTText:
 	done
 
 ComeHomeForDSTText:
+if DEF(_DEBUG)
+	text "Foo"
+	done
+else
 	text "Come home to"
 	line "adjust your clock"
 
@@ -261,16 +275,26 @@ ComeHomeForDSTText:
 	line "know how to use"
 	cont "the PHONE?"
 	done
+endc
 
 KnowTheInstructionsText:
+if DEF(_DEBUG)
+	text "Foo"
+	done
+else
 	text "Don't you just"
 	line "turn the #GEAR"
 
 	para "on and select the"
 	line "PHONE icon?"
 	done
+endc
 
 DontKnowTheInstructionsText:
+if DEF(_DEBUG)
+	text "Foo"
+	done
+else
 	text "I'll read the"
 	line "instructions."
 
@@ -278,8 +302,13 @@ DontKnowTheInstructionsText:
 	line "on and select the"
 	cont "PHONE icon."
 	done
+endc
 
 InstructionsNextText:
+if DEF(_DEBUG)
+	text "Foo"
+	done
+else
 	text "Phone numbers are"
 	line "stored in memory."
 
@@ -289,6 +318,7 @@ InstructionsNextText:
 	para "Gee, isn't that"
 	line "convenient?"
 	done
+endc
 
 HurryUpElmIsWaitingText:
 	text "PROF.ELM is wait-"
