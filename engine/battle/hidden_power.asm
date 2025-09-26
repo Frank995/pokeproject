@@ -1,5 +1,6 @@
 HiddenPowerDamage:
-; Override Hidden Power's type and power based on the user's DVs.
+; Override Hidden Power's damage based on the user's DVs sum.
+; Type remains unchanged
 
 	ld hl, wBattleMonDVs
 	ldh a, [hBattleTurn]
@@ -8,88 +9,24 @@ HiddenPowerDamage:
 	ld hl, wEnemyMonDVs
 .got_dvs
 
-; Power:
+	; Move hl to bc for DVs summing
+	ld b, h
+	ld c, l
 
-; Take the top bit from each stat
+	farcall _SumPKMNDVs   ; A = sum of DVs
 
-	; Attack
-	ld a, [hl]
-	swap a
-	and %1000
+; Power = 30 + (sum / 2)
 
-	; Defense
-	ld b, a
-	ld a, [hli]
-	and %1000
-	srl a
-	or b
+    ; divide by 2
+    ld c, 2
+	call SimpleDivide
+	ld a, b           ; A = sum / 2
 
-	; Speed
-	ld b, a
-	ld a, [hl]
-	swap a
-	and %1000
-	srl a
-	srl a
-	or b
-
-	; Special
-	ld b, a
-	ld a, [hl]
-	and %1000
-	srl a
-	srl a
-	srl a
-	or b
-
-; Multiply by 5
-	ld b, a
-	add a
-	add a
-	add b
-
-; Add Special & 3
-	ld b, a
-	ld a, [hld]
-	and %0011
-	add b
-
-; Divide by 2 and add 30 + 1
-	srl a
-	add 30
-	inc a
-
-	ld d, a
-
-; Type:
-
-	; Def & 3
-	ld a, [hl]
-	and %0011
-	ld b, a
-
-	; + (Atk & 3) << 2
-	ld a, [hl]
-	and %0011 << 4
-	swap a
-	add a
-	add a
-	or b
-
-; Skip Normal
-	inc a
-
-.done
-
-; Overwrite the current move type.
-	push af
-	ld a, BATTLE_VARS_MOVE_TYPE
-	call GetBattleVarAddr
-	pop af
-	ld [hl], a
+	add 30            ; A = sum / 2 + 30
+	ld d, a           ; Put sum in d as the base power
 
 ; Get the rest of the damage formula variables
-; based on the new type, but keep base power.
+; but keep base power from DV sum.
 	ld a, d
 	push af
 	farcall BattleCommand_DamageStats ; damagestats

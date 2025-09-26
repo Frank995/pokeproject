@@ -2,11 +2,14 @@ INCLUDE "engine/gfx/sgb_layouts.asm"
 
 DEF SHINY_DVS_SUM EQU 57
 
-CheckShininess:
-; Check if a mon is shiny by DVs at bc.
-; Return carry if shiny.
+_SumPKMNDVs:
+; Sum all DVs from address in bc
+; Returns sum in a
+; Preserves bc
+	push bc            ; save bc
+
 	; load first byte (Atk/Def)
-	ld a, [bc]         ; a = wTempMonDVs (ATK/DEF packed)
+	ld a, [bc]         ; a = DVs first byte (ATK/DEF packed)
 	ld h, a            ; keep a copy in h
 
 	; --- Extract ATK DV ---
@@ -36,11 +39,19 @@ CheckShininess:
 	and %00001111
 	add l              ; add to sum
 
-	; --- Compare with threshold (d) ---
+	pop bc             ; restore bc
+	ret
+
+CheckShininess:
+; Check if a mon is shiny by DVs at bc.
+; Return carry if shiny.
+	call _SumPKMNDVs        ; result in a
+
+	; Compare with threshold
 	cp SHINY_DVS_SUM   ; sets carry if A < SHINY_DVS_SUM
 	ccf                ; flip carry: now carry=1 if A >= D
 
-    ret
+	ret
 
 InitPartyMenuPalettes:
 	ld hl, PalPacket_PartyMenu + 1
