@@ -187,6 +187,7 @@ if DEF(_DEBUG)
 	giveitem HM_STRENGTH
 	giveitem HM_FLY
 	giveitem HM_CUT
+	giveitem TM_HIDDEN_POWER, 50
 	giveitem MASTER_BALL, 50
 	setflag ENGINE_ZEPHYRBADGE
 	setflag ENGINE_HIVEBADGE
@@ -1354,16 +1355,26 @@ ElmsLabMonEggText: ; unreferenced
 	done
 
 AideText_GiveYouPotion:
+if DEF(_DEBUG)
+	text "Foo"
+	done
+else
 	text "<PLAY_G>, I want"
 	line "you to have this"
 	cont "for your errand."
 	done
+endc
 
 AideText_AlwaysBusy:
+if DEF(_DEBUG)
+	text "Foo"
+	done
+else
 	text "There are only two"
 	line "of us, so we're"
 	cont "always busy."
 	done
+endc
 
 AideText_TheftTestimony:
 	text "There was a loud"

@@ -8,17 +8,10 @@ TypeNames:
 	dw Poison
 	dw Ground
 	dw Rock
-	dw Bird
 	dw Bug
 	dw Ghost
 	dw Steel
-	assert_table_length UNUSED_TYPES
-
-rept UNUSED_TYPES_END - UNUSED_TYPES - 1 ; discount CURSE_TYPE
-	dw Normal
-endr
-	dw CurseType
-	assert_table_length UNUSED_TYPES_END
+	assert_table_length NUM_PHYSICAL_TYPES
 
 	dw Fire
 	dw Water
@@ -28,7 +21,11 @@ endr
 	dw Ice
 	dw Dragon
 	dw Dark
-	assert_table_length TYPES_END
+	dw Fairy
+	assert_table_length NUM_PHYSICAL_TYPES + NUM_SPECIAL_TYPES
+
+	dw Ancient
+	assert_table_length NUM_PHYSICAL_TYPES + NUM_SPECIAL_TYPES + NUM_LEGENDARY_TYPES
 
 Normal:    db "NORMAL@"
 Fighting:  db "FIGHTING@"
@@ -49,3 +46,5 @@ Ghost:     db "GHOST@"
 Steel:     db "STEEL@"
 Dragon:    db "DRAGON@"
 Dark:      db "DARK@"
+Fairy:     db "FAIRY@"
+Ancient:   db "???@"

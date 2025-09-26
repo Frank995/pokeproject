@@ -18,21 +18,18 @@ BattleCommand_Conversion2:
 	call GetMoveAttr
 	ld d, a
 	pop hl
-	cp CURSE_TYPE
+	cp ANCIENT
 	jr z, .failed
 	call AnimateCurrentMove
 	call BattleCommand_SwitchTurn
 
 .loop
 	call BattleRandom
-	maskbits TYPES_END
-	cp UNUSED_TYPES
-	jr c, .okay
-	cp UNUSED_TYPES_END
-	jr c, .loop
-	cp TYPES_END
+	maskbits NUM_TYPES
+	cp NUM_PHYSICAL_TYPES + NUM_SPECIAL_TYPES
 	jr nc, .loop
-.okay
+
+	; Okay type
 	ld [hli], a
 	ld [hld], a
 	push hl
