@@ -189,6 +189,7 @@ if DEF(_DEBUG)
 	giveitem HM_CUT
 	giveitem TM_HIDDEN_POWER, 50
 	giveitem MASTER_BALL, 50
+	setflag ENGINE_POKEDEX
 	setflag ENGINE_ZEPHYRBADGE
 	setflag ENGINE_HIVEBADGE
 	setflag ENGINE_PLAINBADGE
